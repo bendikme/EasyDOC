@@ -1,0 +1,35 @@
+﻿<datagrid>
+
+    <column width="20" order="0" name="Project number" property="Project.ProjectNumber" type="string">
+        <span class="icn-indent project">
+            <a ng-href="/project/{{item.ProjectId}}">{{item.Project.ProjectNumber}}</a>
+        </span> 
+    </column>
+
+    <column width="20" order="1" name="Name" property="Name" type="string">
+        <span editable-text="item.Name">
+            {{item.Name || 'not set'}}
+        </span>
+    </column>
+
+    <column width="10" order="2" name="Role" property="Role" type="enumeration" enumtype="FileRoles">
+        <span editable-select="item.Role" ng-controller="SelectController" onshow="loadEnum('FileRoles')" e-ng-options="r.Name as r.Name for r in fileroles | orderBy:'Name'">
+            {{item.Role || 'not set'}}
+        </span>
+    </column>
+
+    <column width="30" order="3" name="Vendor" property="Vendor.Name" type="string" link="vendor" linkProperty="Vendor">
+        <span ng-class="{ 'icn-indent vendor' : item.Vendor != null}">
+            <a ng-href="/vendor/{{item.VendorId}}">{{item.Vendor.Name || 'not set'}}</a>
+        </span>
+    </column>
+
+    <column width="10" order="4" name="Manual" property="IncludeInManual">
+        <input type="checkbox" ng-model="item.IncludeInManual"/>
+    </column>
+
+    <column width="10" order="5" name="Printed" property="IncludedPrintedVersion">
+        <input type="checkbox" ng-model="item.IncludedPrintedVersion"/>
+    </column>
+
+</datagrid>

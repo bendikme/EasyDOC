@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<generators>
+  <generator name="Vedlikeholdsliste" class="EasyDOC.Pdf.ManualTableGenerators.MaintenanceTableBuilder">
+    <page rotation="true" margins="20,20,72,72" />
+    <parameters>
+      <parameter name="Titles" value="Inspeksjon/rengjøring/vedlikehold,Beskrivelse eller henvisning,Illustrasjon (er av generell karakter og kan derfor avvike fra levert utstyr),Evt. smøremiddel,Intervall,Service utført,Bytte deler,Merknader,Lev.,Daglig,Ukentlig,Hver 2. uke,Månedlig,Hver 3. måned,Hvert halve år,Årlig,> Årlig,Dato,Sign." />
+      <parameter name="Info" value="Vedlikeholdshyppighet kan være omregnet fra drifttidintervall med 24t drift 360d/år. Ekvivalent drifttid i timer." />
+      <parameter name="Info2" value="servicepunkt. Se spesifisert bruksanvisning for mer informasjon." />
+      <parameter name="Widths" value="50,55,80,10,5,5,5,5,5,5,5,5,10,10,13,25,13" />
+    </parameters>
+  </generator>
+  <generator name="Spantech" class="EasyDOC.Pdf.ManualTableGenerators.SpantechDataTableBuilder">
+    <page rotation="true" margins="20,20,72,72" />
+    <parameters>
+      <parameter name="PdfConverterRules" value="root\SpantechFilteredProperties.csv" />
+      <parameter name="Titles" value="Prosj. nr.,Spantech delenummer,Spantech delebeskrivelse,Norsk delebeskrivelse,Ref. tegning,Enhet [m/stk],Tot. ant. [m/stk],Anb. reserve [m/stk],Bånd-bredde [mm]" />
+      <parameter name="Widths" value="1,2,3,3,4,1,1,1,1" />
+    </parameters>
+  </generator>
+  <generator name="Risikotabell" class="EasyDOC.Pdf.ManualTableGenerators.SafetyTableBuilder">
+    <page rotation="true" margins="20,20,72,72" />
+    <parameters>
+      <parameter name="Titles" value="Beskrivelse,Plassering,Illustrasjon" />
+      <parameter name="Widths" value="1,1,2" />
+      <parameter name="Role" value="SafetyRisk" />
+    </parameters>
+  </generator>
+  <generator name="Dekaltabell" class="EasyDOC.Pdf.ManualTableGenerators.SafetyTableBuilder">
+    <page rotation="true" margins="20,20,72,72" />
+    <parameters>
+      <parameter name="Titles" value="Beskrivelse,Plassering,Illustrasjon" />
+      <parameter name="Widths" value="1,1,2" />
+      <parameter name="Role" value="Decal" />
+    </parameters>
+  </generator>
+  <generator name="Komponentliste" class="EasyDOC.Pdf.ManualTableGenerators.ComponentTableBuilder">
+    <page rotation="true" margins="20,20,72,72" />
+    <parameters>
+      <parameter name="Titles" value="Kategori,Leverandør,Vare/Best.nr.,Beskrivelse,Illustrasjon (er av generell karakter og kan derfor avvike fra levert utstyr),Antall,Anb. ant. reservedel" />
+      <parameter name="Widths" value="1,3,2,4,5,1,1,3" />
+      <parameter name="Info" value="" />
+    </parameters>
+  </generator>
+  <generator name="SEW" class="EasyDOC.Pdf.ManualTableGenerators.SewDataTableBuilder">
+    <page rotation="false" margins="60,70,72,72" />
+    <parameters>
+      <parameter name="PdfConverterPath" value="c:\program files (x86)\a-pdf to excel\pptecmd.exe" />
+      <parameter name="PdfConverterRules" value="PdfConverterRules\SEW-MDD.tbl" />
+      <parameter name="Titles" value="Leverandør,Komponent,Manual,Kopi i perm" />
+      <parameter name="Widths" value="3,5,7,2" />
+    </parameters>
+  </generator>
+  <generator name="Manualliste" class="EasyDOC.Pdf.ManualTableGenerators.AttachmentsTableBuilder">
+    <page rotation="false" margins="60,70,72,72" />
+    <parameters>
+      <parameter name="Role" value="Manual" />
+      <parameter name="Titles" value="Leverandør,Komponent,Manual,Kopi i perm" />
+      <parameter name="Widths" value="3,5,7,2" />
+    </parameters>
+  </generator>
+  <generator name="Tegningliste" class="EasyDOC.Pdf.ManualTableGenerators.AttachmentsTableBuilder">
+    <page rotation="false" margins="60,70,72,72" />
+    <parameters>
+      <parameter name="Role" value="Drawing" />
+      <parameter name="Titles" value="Leverandør,Komponent,Tegning,Kopi i perm" />
+      <parameter name="Widths" value="3,6,7,2" />
+    </parameters>
+  </generator>
+  <generator name="Skjemaliste" class="EasyDOC.Pdf.ManualTableGenerators.AttachmentsTableBuilder">
+    <page rotation="false" margins="60,70,72,72" />
+    <parameters>
+      <parameter name="Role" value="Schematics" />
+      <parameter name="Titles" value="Leverandør,Komponent,Skjema,Kopi i perm" />
+      <parameter name="Widths" value="3,6,7,2" />
+    </parameters>
+  </generator>
+</generators>

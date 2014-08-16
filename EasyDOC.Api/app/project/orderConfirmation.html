@@ -1,0 +1,162 @@
+﻿<form class="form-horizontal">
+    <div class="form-body">
+        <h2 class="margin-bottom-25"><a href="/projects/{{item.Project.ProjectNumber}}">{{item.Project.ProjectNumber}}</a> - {{item.Project.Name}}</h2>
+        <h4>{{item.Name}} fra <a href="/vendors/{{item.VendorId}}">{{item.Vendor.Name}}</a></h4>
+
+        <div class="row">
+            <div class="col-md-4">
+                <table class="table table-condensed table-striped">
+                    <tr>
+                        <td>Postadresse: </td>
+                        <td>{{item.Vendor.PostalAddress}}
+                    </tr>
+                    <tr>
+                        <td>Besøksadresse: </td>
+                        <td>{{item.Vendor.VisitingAddress}}</td>
+                    </tr>
+                    <tr>
+                        <td>Telefon: </td>
+                        <td>{{item.Vendor.PhoneNumber}}</td>
+                    </tr>
+                    <tr>
+                        <td>Telefaks: </td>
+                        <td>{{item.Vendor.FaxNumber}}</td>
+                    </tr>
+                    <tr>
+                        <td>Kontonr.: </td>
+                        <td>{{item.Vendor.AccountNumber}}</td>
+                    </tr>
+                    <tr>
+                        <td>Org.nr.: </td>
+                        <td>{{item.Vendor.OrganizationNumber}}</td>
+                    </tr>
+                    <tr>
+                        <td>Internett: </td>
+                        <td><a href="http://{{item.Vendor.Link}}">{{item.Vendor.Link}}</a></td>
+                    </tr>
+                    <tr>
+                        <td>Epost: </td>
+                        <td><a href="mailto:{{item.Vendor.Email}}">{{item.Vendor.Email}}</a></td>
+                    </tr>
+                </table>
+            </div>
+            <!--/span-->
+            <div class="col-md-4">
+                <table class="table table-condensed table-striped">
+                    <tr>
+                        <td>Leverandørreferanse: </td>
+                        <td>{{item.VendorReference}}</td>
+                    </tr>
+                    <tr>
+                        <td>Kundereferanse: </td>
+                        <td>{{item.CustomerReference.Name}}</td>
+                    </tr>
+                    <tr>
+                        <td>Merket: </td>
+                        <td>{{item.Tag}}</td>
+                    </tr>
+                    <tr>
+                        <td>Leveringsadresse: </td>
+                        <td>{{item.DeliveryAddress}}</td>
+                    </tr>
+                    <tr>
+                        <td>Fakturaadresse: </td>
+                        <td>{{item.InvoiceAddress}}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-4">
+                <table class="table table-condensed table-striped">
+                    <tr>
+                        <td>Ordrenr.: </td>
+                        <td>{{item.OrderNumber}}
+                    </tr>
+                    <tr>
+                        <td>Kundenr.: </td>
+                        <td>{{item.CustomerNumber}}</td>
+                    </tr>
+                    <tr>
+                        <td>Ordredato: </td>
+                        <td>{{item.OrderDate | date: 'dd.MM.yyyy'}}</td>
+                    </tr>
+                    <tr>
+                        <td>Leveringsmåte: </td>
+                        <td>{{item.DeliveryMethod}}</td>
+                    </tr>
+                    <tr>
+                        <td>Leveringsbetingelser: </td>
+                        <td>{{item.DeliveryConditions}}</td>
+                    </tr>
+                    <tr>
+                        <td>Betalingsmåte: </td>
+                        <td>{{item.PaymentMethod}}</td>
+                    </tr>
+                    <tr>
+                        <td>Betalingsbetingelser: </td>
+                        <td>{{item.PaymentConditions}}</td>
+                    </tr>
+                </table>
+            </div>
+            <!--/span-->
+        </div>
+        <!--/row-->
+
+        <div class="row">
+            <div class="col-md-12">
+                <h4>Ordrelinjer</h4>
+                <table class="table table-condensed table-striped table-responsive">
+                    <thead>
+                        <tr>
+                            <th>Artikkel</th>
+                            <th>Navn</th>
+                            <th>Informasjon</th>
+                            <th>Leveringsdato</th>
+                            <th>Kvantum</th>
+                            <th>Enhet</th>
+                            <th>Rabatt</th>
+                            <th>Pris per enhet</th>
+                            <th>Total pris</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="line in item.Items">
+                            <td><a href="/components/{{line.ComponentId}}">{{line.Component.Name}}</a></td>
+                            <td>{{line.Component.Description}}</td>
+                            <td>{{line.OrderSpecificDescription}}</td>
+                            <td>{{line.DeliveryDate | date: 'dd.MM.yyyy'}}</td>
+                            <td>{{line.Quantity}}</td>
+                            <td>{{line.Unit}}</td>
+                            <td>{{line.Discount}}%</td>
+                            <td>{{line.AmountPerUnit | currency : item.Currency}}</td>
+                            <td>{{line.TotalAmount | currency : item.Currency}}</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="bold">Totalt uten avg.</td>
+                            <td class="bold">{{item.TotalAmountWithoutTaxes | currency : item.Currency}}</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="bold">Totalt</td>
+                            <td class="bold">{{item.TotalAmountWithTaxes | currency : item.Currency}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--/span-->
+    </div>
+    <!--/row-->
+</form>

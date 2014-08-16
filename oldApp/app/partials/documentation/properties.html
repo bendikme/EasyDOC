@@ -1,0 +1,32 @@
+﻿<div class="row">
+    <div class="col-md-6">
+        <table class="property-grid">
+            <tr>
+                <td><label>Project</label></td>
+                <td>
+                    <span class="icn-indent project">
+                        <a ng-href="/project/{{item.ProjectId}}">{{item.Project.ProjectNumber || 'not set'}}</a>
+                    </span>
+                </td>
+            </tr>
+
+            <tr>
+                <td><label>Image</label></td>
+                <td>
+
+                    <button ng-click="select('folder','Image')" class="editable-link">
+                        <i class="fa fa-link">&nbsp;</i>
+                    </button>
+                    <button ng-click="item.ImageId = null" class="editable-link">
+                        <i class="fa fa-unlink">&nbsp;</i>
+                    </button>
+                </td>
+            </tr>
+        </table>
+        <a ng-href="/breeze/easydoc/ExportPdf?id={{item.Id}}" class="btn btn-success">Generate PDF</a>
+
+    </div>
+    <div class="col-md-6">
+        <img ng-show="item.Image" width="300" height="300" ng-src="{{getImagePreview(item.Image, 300, 300)}}" />
+    </div>
+</div>

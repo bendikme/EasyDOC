@@ -1,0 +1,132 @@
+/*
+Copyright (c) 2003-2013, CKSource - Frederico Knabben. All rights reserved.
+For licensing, see LICENSE.html or http://ckeditor.com/license
+*/
+
+html {
+    background-color: #f4f4f4;
+}
+
+body {
+    -moz-box-shadow: 0px 5px 10px #1c1c1c;
+    -webkit-box-shadow: 0px 5px 10px #1c1c1c;
+    /* Remove the background color to make it transparent */
+    background-color: #fff;
+    box-shadow: 0px 5px 10px #1c1c1c;
+    /* Text color */
+    color: #333;
+    /* Font */
+    font-family: sans-serif, Arial, Verdana, "Trebuchet MS";
+    font-size: 12px;
+    margin: 50px;
+    min-height: 680px;
+    outline: 1px solid #aaa;
+    padding: 70px 50px;
+    width: 480px;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+p {
+    font-family: Helvetica;
+    font-size: 12px;
+    margin: 0;
+    padding: 8px 0;
+}
+
+
+.imageid {
+    padding: 2px;
+    margin: 0;
+    background: #eee;
+    border: 1px solid #ddd;
+    box-shadow: 0 1px 1px #fff inset, 0 -1px 0px #ccc inset;
+}
+
+.imageid-img {
+    border: 1px solid #ddd;
+}
+
+.imageid-caption {
+    margin: 0;
+    padding: 2px;
+    background: #fff;
+}
+
+.cke_editable {
+    font-size: 13px;
+    line-height: 1.6em;
+}
+
+blockquote {
+    border-color: #ccc;
+    border-style: solid;
+    border-width: 0;
+    font-family: Georgia, Times, "Times New Roman", serif;
+    font-style: italic;
+    padding: 2px 0;
+}
+
+.cke_contents_ltr blockquote {
+    border-left-width: 5px;
+    padding-left: 20px;
+    padding-right: 8px;
+}
+
+.cke_contents_rtl blockquote {
+    border-right-width: 5px;
+    padding-left: 8px;
+    padding-right: 20px;
+}
+
+a {
+    color: #0782C1;
+}
+
+ol, ul, dl {
+    margin: 0;
+    /* IE7: reset rtl list margin. (#7334) */
+    *margin-right: 0px;
+    /* preserved spaces for list items with text direction other than the list. (#6249,#8049)*/
+    padding: 0 0 0 40px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+    line-height: 1.2em;
+}
+
+hr {
+    border: 0px;
+    border-top: 1px solid #ccc;
+}
+
+img.right {
+    border: 1px solid #ccc;
+    float: right;
+    margin-left: 15px;
+    padding: 5px;
+}
+
+img.left {
+    border: 1px solid #ccc;
+    float: left;
+    margin-right: 15px;
+    padding: 5px;
+}
+
+img:hover {
+    filter: alpha(opacity = 90);
+    opacity: .9;
+}
+
+pre {
+    white-space: pre-wrap; /* CSS 2.1 */
+    word-wrap: break-word; /* IE7 */
+}
+
+.marker {
+    background-color: Yellow;
+}

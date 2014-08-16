@@ -1,0 +1,11 @@
+﻿<div class="well well-sm pull-right">
+    <h4>Historikk</h4>
+    <dl>
+        <dd ng-if ="item.Creator != null">
+            Oprettet av {{item.Creator.Name}} <span am-time-ago="item.Created"></span>
+        </dd>
+        <dd ng-if="item.Editor != null">
+            Sist endret av {{item.Editor.Name}} <span am-time-ago="item.Edited"></span>
+        </dd>
+    </dl>
+</div>

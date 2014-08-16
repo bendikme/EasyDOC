@@ -1,0 +1,4 @@
+﻿<h1 class="{{item.entityAspect.entityState.name}}">{{item.Name || 'not set'}}.{{item.Type}}</h1>
+<a ng-href="/folder/{{item.CatalogId}}" class="btn btn-sm blue">Vis i utforsker</a>
+<button ng-click="getUrl(item)" target="_blank" class="btn btn-sm blue"><i class="fa fa-fw fa-download"></i> Last ned</button>
+<h4>{{getFormattedSize(item.FileSize)}}</h4>

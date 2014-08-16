@@ -1,0 +1,158 @@
+﻿<div>
+    <div id="table-header">
+        <div id="table-header-wrapper">
+            <table class="easy-table table table-responsive" style="margin-bottom: 0">
+                <thead>
+                    <tr class="table-row">
+                        <th class="row-checkbox">
+                            <input type="checkbox" ng-disabled="items.length == 0" ng-checked="items.length > 0 && items.length == selectedItemCount" ng-click="selectAll($event)" data-toggle="tooltip" title="Select/deselect all" />
+                        </th>
+                        <th ng-repeat="column in columns" ng-if="column.visible" ng-style="{ 'width': column.width + '%'}">
+                            <table class="easy-table">
+                                <thead>
+                                    <tr class="table-row" ng-class="{{rowClass}}" ng-click="orderByProperty(column.property, $event)">
+                                        <th class="cell" title="{{column.name}}">
+                                            {{column.name}}
+                                        </th>
+                                        <th class="col-button">
+                                            <i class="fa fa-fw" ng-class="{ 'fa-angle-down' : column.sort == -1, 'fa-angle-up' : column.sort == 1 }"></i>
+                                        </th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </th>
+                    </tr>
+                    <tr ng-if="showFilters" class="table-row">
+                        <th></th>
+                        <th ng-repeat="column in columns" ng-if="column.visible">
+                            <div ng-if="column.type == 'text'" class="input-icon right">
+                                <i class="fa fa-filter" ng-click="column.filterCollection.setSingleFilter(column.filter); requeryWithFilters()"></i>
+                                <input type="text" class="form-control input-sm" ng-enter="column.filterCollection.setSingleFilter(column.filter); requeryWithFilters();" ng-model="column.filter" ng-value="column.filterCollection.getSingleFilter()" ng-trim="true" autofocus />
+                            </div>
+                            <select ng-if="column.type === 'enumeration'" class="form-control input-sm" ng-change="column.filterCollection.setSingleFilter(column.filter); requeryWithFilters()" ng-model="column.filter" ng-options="f for f in column.enums" autofocus></select>
+                            <input ng-if="column.type === 'bool'" class="form-control input-sm" ng-model="column.filter" />
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+    <div id="table" style="overflow-y: auto;">
+        <div id="table-body-wrapper">
+            <table id="table-body" class="easy-table table table-condensed">
+                <tbody>
+                    <tr class="table-row {{ item.entityAspect.entityState.name}}" style="border-collapse: separate" draggable ng-class="{ 'selected' : item.isSelected, 'bg-red' : item.entityAspect.getValidationErrors().length }" ng-repeat="item in items">
+                        <td class="row-checkbox">
+                            <input type="checkbox" ng-model="item.isSelected" />
+                        </td>
+                        <td ng-repeat="column in columns" ng-if="column.visible" ng-style="{ 'width': column.width + '%' }" ng-class="{ 'selected' : column.isSelected }">
+                            <table class="easy-table">
+                                <tr class="table-row" ng-click="selectItem(item, column, $event)">
+                                    <td class="cell" ng-if="column.type == 'textarea' || column.type == 'text' || column.type == 'number'">
+
+                                        <table class="easy-table">
+                                            <tr class="table-row" ng-class="{{rowClass}}">
+                                                <td class="cell">
+                                                    <div class="inner" ng-if="!isEditing(item, column)" ng-style="{{column.colStyle}}" ng-class="{{column.colClass}}" dynamic="item._columns[column.name].template"></div>
+                                                    <input ng-if="column.type != 'textarea' && isEditing(item, column)" type="{{column.type}}" class="editMode" ng-enter="saveEditedItem(item, column)" ng-esc="stopEditing(item, column)" ng-blur="stopEditing(item, column)" ng-model="temp.value" autofocus />
+                                                    <textarea ng-if="column.type == 'textarea' && isEditing(item, column)" class="editMode" rows="10" ng-esc="stopEditing(item, column)" ng-blur="stopEditing(item, column)" ng-model="temp.value" autofocus></textarea>
+                                                </td>
+                                                <td ng-if="!isReadOnly && item._columns[column.name].permission && !column.readonly && !column.link" class="col-button">
+                                                    <button class="editable-link" ng-if="isEditing(item, column)" ng-mousedown="saveEditedItem(item, column, $event)"><i class="fa fa-save"></i></button>
+                                                    <button class="editable-link" ng-if="!isEditing(item, column)" ng-click="startEditing(item, column, $event)"><i class="fa fa-pencil"></i></button>
+                                                </td>
+                                                <td ng-if="!isReadOnly && item._columns[column.name].permission && !column.readonly && !isLinkMode && column.link" class="col-button2">
+                                                    <button ng-click="unlink(item,column)" class="editable-link pull-right">
+                                                        <i class="fa fa-unlink"></i>
+                                                    </button>
+                                                    <button ng-click="link(item, column, $event)" class="editable-link pull-right">
+                                                        <i class="fa fa-link"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td class="cell" ng-if="column.type == 'enumeration'">
+                                        <table class="easy-table">
+                                            <tr class="table-row">
+                                                <td class="cell">
+                                                    <div class="inner" ng-if="!isEditing(item, column)" title="{{item[column.property]}}">{{item[column.property]}}</div>
+                                                    <select class="editMode" ng-if="isEditing(item, column)" ng-options="r.Name as r.Name for r in options | orderBy:'Name'" ng-enter="saveEditedItem(item, column)" ng-esc="stopEditing(item, column)" ng-blur="stopEditing(item, column)" ng-model="temp.value" autofocus></select>
+                                                </td>
+                                                <td ng-if="!isReadOnly && item._columns[column.name].permission && !column.readonly && !column.link" class="col-button">
+                                                    <button class="editable-link" ng-if="isEditing(item, column)" ng-mousedown="saveEditedItem(item, column, $event)"><i class="fa fa-save"></i></button>
+                                                    <button class="editable-link" ng-if="!isEditing(item, column)" ng-click="startEditing(item, column, $event)"><i class="fa fa-list-ol"></i></button>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td class="cell" ng-if="column.type == 'datetime'">
+                                        <table class="easy-table">
+                                            <tr class="table-row">
+                                                <td class="cell">
+                                                    <div class="inner" ng-if="!isEditing(item, column)" title="{{item[column.property] | amDateFormat: 'DD.MM.YYYY HH:mm'}}">{{item[column.property] | amDateFormat: 'DD.MM.YYYY'}}</div>
+                                                    <input ng-if="isEditing(item, column)" type="text" datetimez class="editMode" ng-enter="saveEditedItem(item, column)" ng-esc="stopEditing(item, column)" ng-model="temp.value" />
+                                                </td>
+                                                <td ng-if="!isReadOnly && item._columns[column.name].permission && !column.readonly && !column.link" class="col-button">
+                                                    <button class="editable-link" ng-if="isEditing(item, column)" ng-mousedown="saveEditedItem(item, column, $event)"><i class="fa fa-save"></i></button>
+                                                    <button class="editable-link" ng-if="!isEditing(item, column)" ng-click="startEditing(item, column, $event)"><i class="fa fa-pencil"></i></button>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td class="cell" ng-if="column.type == 'bool'">
+                                        <div ng-click="item[column.property] = !item[column.property]" style="text-align: center;">
+                                            <i ng-show="item[column.property]" class="fa fa-check"></i><span>&nbsp;</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="column-dialog" class="modal fade">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Innstillinger</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Synlinge kolonner</div>
+                        <ul class="list-group" ng-model="columns" ui-sortable="{ axis: 'y', containment: 'parent' }">
+                            <li class="list-group-item" ng-repeat="column in columns" ng-click="toggleColumn(column)">
+                                {{column.name}}<span ng-show="column.visible" class="pull-right fa fa-fw fa-check"></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-sm" ng-click="resetColumns()">Standard</button>
+                    <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Lukk</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-if="showStatusbar" class="statusbar margin-top-10 row">
+        <div class="col-md-6">
+            <span ng-if="count > 1" class="navbar-text">
+                <span editable-number="queryParams.take" e-min="5" e-max="50">
+                    Viser {{paging.showStart}}-{{paging.showEnd}} av {{count}} rad(er)
+                </span>
+            </span>
+            <span ng-if="count == 0" class="navbar-text">Ingen rader</span>
+            <span ng-if="selectedItemCount > 0" class="navbar-text">Antall valgte rader: {{selectedItemCount}}</span>
+        </div>
+        <div class="col-md-6" ng-hide="hasNewItems()">
+            <pagination class="pull-right" total-items="count" items-per-page="queryParams.take" class="pagination-sm" boundary-links="true" max-size="5" ng-model="paging.current" ng-change="gotoPage(paging.current)"></pagination>
+        </div>
+    </div>
+
+    <div ng-transclude ng-hide="true"></div>
+
+</div>

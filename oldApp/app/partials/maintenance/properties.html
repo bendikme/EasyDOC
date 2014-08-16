@@ -1,0 +1,58 @@
+﻿<div class="row">
+    <div class="col-md-6">
+        <table class="property-grid">
+            <tr>
+                <td><label>Description</label></td>
+                <td>
+                    <span editable-textarea="item.Description">{{item.Description || 'not set'}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Manual</label></td>
+                <td>
+                    <span class="icn-indent file">{{item.Manual.Name || 'not set'}}</span>
+                    <button ng-click="select('folder','Manual')" class="editable-link">
+                        <i class="fa fa-link">&nbsp;</i>
+                    </button>
+                    <button ng-click="item.ManualId = null" class="editable-link">
+                        <i class="fa fa-unlink">&nbsp;</i>
+                    </button>
+                </td>
+            </tr>
+            <tr ng-show="item.Manual">
+                <td><label>Manual page</label></td>
+                <td>
+                    <span editable-number="item.ManualPage">{{item.ManualPage || '1' }}</span>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Vendor</label></td>
+                <td>
+                    <span class="icn-indent vendor">
+                        <a ng-href="/vendor/{{item.VendorId}}">{{item.Vendor.Name}}</a>
+                        <button ng-click="select('vendor','Vendor')" class="editable-link">
+                            <i class="fa fa-link">&nbsp;</i>
+                        </button>
+                        <button ng-click="item.VendorId = null" class="editable-link">
+                            <i class="fa fa-unlink">&nbsp;</i>
+                        </button>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Image</label></td>
+                <td>
+                    <button ng-click="select('folder','Image')" class="editable-link">
+                        <i class="fa fa-link">&nbsp;</i>
+                    </button>
+                    <button ng-click="item.ImageId = null" class="editable-link">
+                        <i class="fa fa-unlink">&nbsp;</i>
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <img ng-show="item.Image" width="300" height="300" ng-src="{{getImagePreview(item.Image, 300, 300)}}" />
+    </div>
+</div>

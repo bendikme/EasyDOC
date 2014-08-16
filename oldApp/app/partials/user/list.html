@@ -1,0 +1,18 @@
+﻿<datagrid>
+    
+    <column width="40" order="0" name="Name" property="Name" type="string">
+        <span class="icn-indent user">
+            <a ng-href="/user/{{item.Id}}">{{item.Name}}</a>
+        </span>
+        <span ng-hide="modifyDisabled('User')" editable-text="item.Name" e-required></span>
+    </column>
+
+    <column width="30" order="1" name="Username" property="Username" type="string">
+        <span ng-hide="modifyDisabled('User')" editable-text="item.Username" e-required>{{item.Username}}</span>
+    </column>
+
+    <column width="30" order="2" name="Email" property="Email" type="string">
+        <span ng-hide="modifyDisabled('User')" editable-text="item.Email" e-required>{{item.Email}}</span>
+    </column>
+
+</datagrid>

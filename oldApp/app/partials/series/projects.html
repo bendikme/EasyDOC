@@ -1,0 +1,27 @@
+﻿<datagrid data-type="ProjectComponents" data-cache-key="component-projects" data-expand="Project" data-sort="Project.ProjectNumber">
+
+    <where property="ComponentId" condition="==" val="{{item.Id}}" />
+
+    <column width="10" order="0" name="Project" property="Project.ProjectNumber" type="string">
+        <span class="icn-indent project">
+            <a ng-href="/project/{{item.ProjectId}}">{{item.Project.ProjectNumber}}</a>
+        </span> 
+    </column>
+
+    <column width="50" order="1" name="Name" property="Project.Name" type="string">
+        {{item.Project.Name}}
+    </column>
+
+    <column width="10" order="2" name="Count" property="Count" type="number">
+        <span editable-number="item.Count">
+            {{item.Count}}
+        </span>
+    </column>
+
+    <column width="20" order="3" name="Info" property="Info" type="string">
+        <span editable-textarea="item.Info">
+            {{item.Info}}
+        </span>
+    </column>
+
+</datagrid>

@@ -1,0 +1,31 @@
+﻿<datagrid>
+
+    <column width="20" order="0" name="Preview" property="ImageId">
+        <div class="thumbnail" ng-switch on="item.Type" style="height:256px; width:256px;"> 
+            <img ng-switch-when="pdf" width="256" height="256" ng-src="{{getPdfPreview(item, 128, 128)}}" />
+            <img ng-switch-when="png" width="256" height="256" ng-src="{{getImagePreview(item, 128, 128)}}" />
+            <img ng-switch-when="jpg" width="256" height="256" ng-src="{{getImagePreview(item, 128, 128)}}" />
+            <img ng-switch-when="jpeg" width="256" height="256" ng-src="{{getImagePreview(item, 128, 128)}}" />
+        </div>
+    </column>
+
+    <column width="40" order="0" name="Filename" property="Name" type="string">
+        <span class="icn-indent {{item.Type}}">
+            <a ng-href="/file/{{item.Id}}">{{item.Name}}</a>
+        </span>
+        <span editable-text="item.Name" e-required></span>
+    </column>
+
+    <column width="40" order="1" name="Description" property="Name" type="string">
+        <span editable-textarea="item.Description">{{item.Description}}</span> 
+    </column>
+
+    <column width="10" order="2" name="Type" property="Type" type="string">
+          {{item.Type}}
+    </column>
+
+    <column width="10" order="3" name="Size" property="FileSize" type="string">
+          {{getFormatedSize(item)}}
+    </column>
+
+</datagrid>

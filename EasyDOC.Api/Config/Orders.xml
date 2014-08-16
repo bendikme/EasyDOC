@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<orders>
+    <order name="Boxon" class="EasyDOC.Pdf.ConfirmationOrderParsers.Boxon, EasyDOC.Pdf">
+        <vendor value="Boxon AS" />
+        <parameter name="RowSpace" value="8" />
+        <parameter name="PdfConverterPath" value="c:\program files (x86)\a-pdf to excel\pptecmd.exe" />
+        <parameter name="PdfConverterRules1" value="PdfConverterRules\Boxon\Boxon-1-MDD.tbl" />
+        <parameter name="PdfConverterRules2" value="PdfConverterRules\Boxon\Boxon-2-MDD.tbl" extend="true" />
+        <parameter name="PdfConverterRules3" value="PdfConverterRules\Boxon\Boxon-3-MDD.tbl" />
+        <parameter name="PdfConverterRules4" value="PdfConverterRules\Boxon\Boxon-4-MDD.tbl" />
+    </order>
+
+    <order name="ElectroDrives" class="EasyDOC.Pdf.ConfirmationOrderParsers.ElectroDrives, EasyDOC.Pdf">
+        <vendor value="Electro Drives AS" hint="electro-drives" />
+        <parameter name="RowSpace" value="8" />
+        <parameter name="PdfConverterPath" value="c:\program files (x86)\a-pdf to excel\pptecmd.exe" />
+        <parameter name="PdfConverterRules1" value="PdfConverterRules\ElectroDrives\ElectroDrives-1-MDD.tbl" />
+        <parameter name="PdfConverterRules2" value="PdfConverterRules\ElectroDrives\ElectroDrives-2-MDD.tbl" />
+        <parameter name="PdfConverterRules3" value="PdfConverterRules\ElectroDrives\ElectroDrives-3-MDD.tbl" />
+        <parameter name="PdfConverterRules4" value="PdfConverterRules\ElectroDrives\ElectroDrives-4-MDD.tbl" />
+        <parameter name="PdfConverterRules5" value="PdfConverterRules\ElectroDrives\ElectroDrives-5-MDD.tbl" />
+        <parameter name="PdfConverterRules6" value="PdfConverterRules\ElectroDrives\ElectroDrives-6-MDD.tbl" />
+        <parameter name="PdfConverterRules7" value="PdfConverterRules\ElectroDrives\ElectroDrives-7-MDD.tbl" />
+    </order>
+
+    <order name="Festo" class="EasyDOC.Pdf.ConfirmationOrderParsers.Festo, EasyDOC.Pdf">
+        <vendor value="Festo AS" />
+        <parameter name="RowSpace" value="8" />
+        <parameter name="PdfConverterPath" value="c:\program files (x86)\a-pdf to excel\pptecmd.exe" />
+        <parameter name="PdfConverterRules1" value="PdfConverterRules\Festo\Festo-1-MDD.tbl" extend="true" />
+        <parameter name="PdfConverterRules2" value="PdfConverterRules\Festo\Festo-2-MDD.tbl" />
+        <parameter name="PdfConverterRules3" value="PdfConverterRules\Festo\Festo-3-MDD.tbl" />
+        <parameter name="PdfConverterRules4" value="PdfConverterRules\Festo\Festo-4-MDD.tbl" />
+        <parameter name="PdfConverterRules5" value="PdfConverterRules\Festo\Festo-5-MDD.tbl" />
+    </order>
+
+    <order name="Intralox" class="EasyDOC.Pdf.ConfirmationOrderParsers.Intralox, EasyDOC.Pdf">
+        <vendor value="Intralox" />
+        <parameter name="PdfConverterPath" value="c:\program files (x86)\a-pdf to excel\pptecmd.exe" />
+        <parameter name="PdfConverterRules1" value="PdfConverterRules\Intralox-MDD.tbl" />
+    </order>
+
+    <order name="JensS" class="EasyDOC.Pdf.ConfirmationOrderParsers.JensS, EasyDOC.Pdf">
+        <vendor value="Jens S. Transmisjoner AS" />
+        <parameter name="RowSpace" value="8" />
+        <parameter name="PdfConverterPath" value="c:\program files (x86)\a-pdf to excel\pptecmd.exe" />
+        <parameter name="PdfConverterRules1" value="PdfConverterRules\JensS\JensS-1-MDD.tbl" />
+        <parameter name="PdfConverterRules2" value="PdfConverterRules\JensS\JensS-2-MDD.tbl" />
+        <parameter name="PdfConverterRules3" value="PdfConverterRules\JensS\JensS-3-MDD.tbl" />
+        <parameter name="PdfConverterRules4" value="PdfConverterRules\JensS\JensS-4-MDD.tbl" extend="true" />
+        <parameter name="PdfConverterRules5" value="PdfConverterRules\JensS\JensS-5-MDD.tbl" />
+    </order>
+
+    <order name="Kulelagerhuset" class="EasyDOC.Pdf.ConfirmationOrderParsers.Kulelagerhuset, EasyDOC.Pdf">
+        <vendor value="Kulelagerhuset AS" />
+        <parameter name="RowSpace" value="8" />
+        <parameter name="PdfConverterPath" value="c:\program files (x86)\a-pdf to excel\pptecmd.exe" />
+        <parameter name="PdfConverterRules1" value="PdfConverterRules\Kulelagerhuset\Kulelagerhuset-1-MDD.tbl" />
+        <parameter name="PdfConverterRules2" value="PdfConverterRules\Kulelagerhuset\Kulelagerhuset-2-MDD.tbl" />
+        <parameter name="PdfConverterRules3" value="PdfConverterRules\Kulelagerhuset\Kulelagerhuset-3-MDD.tbl" extend="true" />
+        <parameter name="PdfConverterRules4" value="PdfConverterRules\Kulelagerhuset\Kulelagerhuset-4-MDD.tbl" />
+    </order>
+
+    <order name="Lesjofors" class="EasyDOC.Pdf.ConfirmationOrderParsers.Lesjofors, EasyDOC.Pdf">
+        <vendor value="Lesjöfors A/S" hint="lesjofors" />
+        <parameter name="RowSpace" value="8" />
+        <parameter name="PdfConverterPath" value="c:\program files (x86)\a-pdf to excel\pptecmd.exe" />
+        <parameter name="PdfConverterRules1" value="PdfConverterRules\Lesjofors\Lesjofors-1-MDD.tbl" />
+        <parameter name="PdfConverterRules2" value="PdfConverterRules\Lesjofors\Lesjofors-2-MDD.tbl" />
+        <parameter name="PdfConverterRules3" value="PdfConverterRules\Lesjofors\Lesjofors-3-MDD.tbl" />
+        <parameter name="PdfConverterRules4" value="PdfConverterRules\Lesjofors\Lesjofors-4-MDD.tbl" extend="true" />
+    </order>
+
+    <order name="Murrelektronik" class="EasyDOC.Pdf.ConfirmationOrderParsers.MurrElektronik, EasyDOC.Pdf">
+        <vendor value="Murrelektronik" />
+        <parameter name="PdfConverterPath" value="c:\program files (x86)\a-pdf to excel\pptecmd.exe" />
+        <parameter name="PdfConverterRules1" value="PdfConverterRules\MurrElektronik-MDD.tbl" />
+    </order>
+
+    <order name="Omron" class="EasyDOC.Pdf.ConfirmationOrderParsers.Omron, EasyDOC.Pdf">
+        <vendor value="Omron" />
+        <parameter name="RowSpace" value="20" />
+        <parameter name="PdfConverterPath" value="c:\program files (x86)\a-pdf to excel\pptecmd.exe" />
+        <parameter name="PdfConverterRules1" value="PdfConverterRules\Omron\Omron-1-MDD.tbl" extend="true" />
+        <parameter name="PdfConverterRules2" value="PdfConverterRules\Omron\Omron-2-MDD.tbl" />
+        <parameter name="PdfConverterRules3" value="PdfConverterRules\Omron\Omron-3-MDD.tbl" />
+        <parameter name="PdfConverterRules4" value="PdfConverterRules\Omron\Omron-4-MDD.tbl" />
+        <parameter name="PdfConverterRules5" value="PdfConverterRules\Omron\Omron-5-MDD.tbl" />
+        <parameter name="PdfConverterRules6" value="PdfConverterRules\Omron\Omron-6-MDD.tbl" />
+        <parameter name="PdfConverterRules7" value="PdfConverterRules\Omron\Omron-7-MDD.tbl" />
+        <parameter name="Filter" value="EKSPRESS FRAKT-TILLEGG;Freight;FRAKT" />
+    </order>
+
+    <order name="OttoOlsen" class="EasyDOC.Pdf.ConfirmationOrderParsers.OttoOlsen, EasyDOC.Pdf">
+        <vendor value="Otto Olsen AS" />
+        <parameter name="RowSpace" value="8" />
+        <parameter name="PdfConverterPath" value="c:\program files (x86)\a-pdf to excel\pptecmd.exe" />
+        <parameter name="PdfConverterRules1" value="PdfConverterRules\OttoOlsen\OttoOlsen-1-MDD.tbl" />
+        <parameter name="PdfConverterRules2" value="PdfConverterRules\OttoOlsen\OttoOlsen-2-MDD.tbl" />
+        <parameter name="PdfConverterRules3" value="PdfConverterRules\OttoOlsen\OttoOlsen-3-MDD.tbl" />
+        <parameter name="PdfConverterRules4" value="PdfConverterRules\OttoOlsen\OttoOlsen-4-MDD.tbl" />
+        <parameter name="PdfConverterRules5" value="PdfConverterRules\OttoOlsen\OttoOlsen-5-MDD.tbl" />
+        <parameter name="PdfConverterRules6" value="PdfConverterRules\OttoOlsen\OttoOlsen-6-MDD.tbl" />
+        <parameter name="PdfConverterRules7" value="PdfConverterRules\OttoOlsen\OttoOlsen-7-MDD.tbl" />
+    </order>
+
+    <order name="Roca" class="EasyDOC.Pdf.ConfirmationOrderParsers.Roca, EasyDOC.Pdf">
+        <vendor value="Roca Industry AB" />
+        <parameter name="RowSpace" value="8" />
+        <parameter name="PdfConverterPath" value="c:\program files (x86)\a-pdf to excel\pptecmd.exe" />
+        <parameter name="PdfConverterRules1" value="PdfConverterRules\Roca\Roca-1-MDD.tbl" />
+        <parameter name="PdfConverterRules2" value="PdfConverterRules\Roca\Roca-2-MDD.tbl" />
+        <parameter name="PdfConverterRules3" value="PdfConverterRules\Roca\Roca-3-MDD.tbl" extend="true" />
+        <parameter name="PdfConverterRules4" value="PdfConverterRules\Roca\Roca-4-MDD.tbl" />
+    </order>
+
+    <order name="Rollco" class="EasyDOC.Pdf.ConfirmationOrderParsers.Rollco, EasyDOC.Pdf">
+        <vendor value="Rollco" />
+        <parameter name="RowSpace" value="8" />
+        <parameter name="PdfConverterPath" value="c:\program files (x86)\a-pdf to excel\pptecmd.exe" />
+        <parameter name="PdfConverterRules1" value="PdfConverterRules\Rollco\Rollco-1-MDD.tbl" />
+        <parameter name="PdfConverterRules2" value="PdfConverterRules\Rollco\Rollco-2-MDD.tbl" />
+        <parameter name="PdfConverterRules3" value="PdfConverterRules\Rollco\Rollco-3-MDD.tbl" />
+        <parameter name="PdfConverterRules4" value="PdfConverterRules\Rollco\Rollco-4-MDD.tbl" extend="true" />
+        <parameter name="PdfConverterRules5" value="PdfConverterRules\Rollco\Rollco-5-MDD.tbl" />
+    </order>
+
+    <order name="Sick" class="EasyDOC.Pdf.ConfirmationOrderParsers.Sick, EasyDOC.Pdf">
+        <vendor value="Sick AS" />
+        <parameter name="RowSpace" value="8" />
+        <parameter name="PdfConverterPath" value="c:\program files (x86)\a-pdf to excel\pptecmd.exe" />
+        <parameter name="PdfConverterRules1" value="PdfConverterRules\Sick\Sick-1-MDD.tbl" />
+        <parameter name="PdfConverterRules2" value="PdfConverterRules\Sick\Sick-2-MDD.tbl" />
+        <parameter name="PdfConverterRules3" value="PdfConverterRules\Sick\Sick-3-MDD.tbl" />
+        <parameter name="PdfConverterRules4" value="PdfConverterRules\Sick\Sick-4-MDD.tbl" />
+        <parameter name="PdfConverterRules5" value="PdfConverterRules\Sick\Sick-5-MDD.tbl" />
+        <parameter name="PdfConverterRules6" value="PdfConverterRules\Sick\Sick-6-MDD.tbl" />
+        <parameter name="PdfConverterRules7" value="PdfConverterRules\Sick\Sick-7-MDD.tbl" />
+        <parameter name="Filter" value="Emballasje" />
+    </order>
+
+    <order name="SEW" class="EasyDOC.Pdf.ConfirmationOrderParsers.SEW, EasyDOC.Pdf">
+        <vendor value="SEW" />
+        <parameter name="RowSpace" value="20" />
+        <parameter name="PdfConverterPath" value="c:\program files (x86)\a-pdf to excel\pptecmd.exe" />
+        <parameter name="PdfConverterRules1" value="PdfConverterRules\SEW\SEW-1-MDD.tbl" />
+        <parameter name="PdfConverterRules2" value="PdfConverterRules\SEW\SEW-2-MDD.tbl" extend="true" />
+        <parameter name="PdfConverterRules3" value="PdfConverterRules\SEW\SEW-3-MDD.tbl" extend="true" />
+        <parameter name="PdfConverterRules4" value="PdfConverterRules\SEW\SEW-4-MDD.tbl" />
+        <parameter name="PdfConverterRules5" value="PdfConverterRules\SEW\SEW-5-MDD.tbl" />
+        <parameter name="PdfConverterRules6" value="PdfConverterRules\SEW\SEW-6-MDD.tbl" />
+        <parameter name="PdfConverterRules7" value="PdfConverterRules\SEW\SEW-7-MDD.tbl" />
+    </order>
+
+    <order name="Volta" class="EasyDOC.Pdf.ConfirmationOrderParsers.Volta, EasyDOC.Pdf">
+        <vendor value="Volta" />
+        <parameter name="RowSpace" value="20" />
+        <parameter name="PdfConverterPath" value="c:\program files (x86)\a-pdf to excel\pptecmd.exe" />
+        <parameter name="PdfConverterRules1" value="PdfConverterRules\Volta\Volta-1-MDD.tbl" />
+        <parameter name="PdfConverterRules2" value="PdfConverterRules\Volta\Volta-2-MDD.tbl" />
+        <parameter name="PdfConverterRules3" value="PdfConverterRules\Volta\Volta-3-MDD.tbl" extend="true" />
+        <parameter name="PdfConverterRules4" value="PdfConverterRules\Volta\Volta-4-MDD.tbl" />
+        <parameter name="PdfConverterRules5" value="PdfConverterRules\Volta\Volta-5-MDD.tbl" />
+    </order>
+
+</orders>

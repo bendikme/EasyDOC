@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<!--[if IE 8]> <html ng-app="app" lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html ng-app="app" lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html ng-app="app" lang="no">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <title ng-bind="title">EasyDOC</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+    <link href="/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" type="text/css" href="/assets/global/plugins/bootstrap-datepicker/css/datepicker3.css" />
+
+    <link href="/assets/admin/pages/css/tasks.css" rel="stylesheet" type="text/css" />
+
+    <link href="/assets/global/css/components.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/global/css/plugins.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/admin/layout/css/layout.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/admin/layout/css/themes/default.css" rel="stylesheet" type="text/css" id="style_color" />
+
+    <link href="/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/breeze.directives.css" rel="stylesheet" type="text/css" />
+
+    <script src="/Scripts/underscore.min.js"></script>
+
+    <script src="/Scripts/breeze.min.js"></script>
+    <script src="/Scripts/angular/angular.min.js"></script>
+    <script src="/Scripts/angular/i18n/angular-locale_no.js"></script>
+    <script src="/Scripts/angular-ui-router.min.js"></script>
+    <script src="/Scripts/angular/i18n/angular-locale_no.js"></script>
+    <script src="/Scripts/moment-with-langs.min.js"></script>
+    <script src="/Scripts/angular/angular-moment.min.js"></script>
+    <script src="/Scripts/angular/bindonce.min.js"></script>
+    <script src="/Scripts/breeze.directives.js"></script>
+
+    <script src="/Scripts/kinetic.js"></script>
+
+    <script src="/Scripts/breeze.angular.js"></script>
+    <script src="/Scripts/breeze.saveErrorExtensions.js"></script>
+
+    <script src="/Scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>
+
+    <script src="/Scripts/ckeditor/ckeditor.js"></script>
+
+    <script src="/Scripts/class.js"></script>
+    <script src="/Scripts/namespace.js"></script>
+
+    <link rel="stylesheet" href="/Content/toastr.min.css" />
+    <link rel="stylesheet" href="/Content/ng-tags-input.min.css" />
+</head>
+<body id="app" class="page-header-fixed">
+    <keyboard></keyboard>
+    @RenderBody()
+    <script src="/app/filter.js"></script>
+    <script src="/app/helpers/selectable.js"></script>
+    <script src="/app/base/BaseController.js"></script>
+    <script src="/app/base/BaseDirective.js"></script>
+    <script src="/app/base/EventDispatcher.js"></script>
+    <script src="/app/base/Notifications.js"></script>
+    <script src="/app/command/CommandService.js"></script>
+    <script src="/app/ganttchart/path-builder.js"></script>
+    <script src="/app/ganttchart/gantt-calendar.js"></script>
+    <script src="/app/ganttchart/gantt-dependency.js"></script>
+    <script src="/app/ganttchart/gantt-item.js"></script>
+    <script src="/app/ganttchart/gantt-grid.js"></script>
+
+    <script src="/assets/global/plugins/jquery-1.11.0.min.js" type="text/javascript"></script>
+    <script src="/assets/global/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+    <script src="/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="/assets/global/plugins/jquery.cokie.min.js" type="text/javascript"></script>
+
+    <script type="text/javascript" src="/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <script type="text/javascript" src="/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="/assets/global/plugins/bootstrap-datepicker/js/locales/bootstrap-datepicker.no.js"></script>
+
+    <script src="/assets/global/scripts/metronic.js" type="text/javascript"></script>
+    <script src="/assets/admin/layout/scripts/layout.js" type="text/javascript"></script>
+
+    <script>
+        $(function () {
+            Metronic.init();
+            Layout.init();
+        });
+    </script>
+
+    <script src="/assets/global/plugins/bootstrap-toastr/toastr.min.js"></script>
+    <script src="/Scripts/jquery.signalR-2.0.2.min.js"></script>
+
+    <script src="/Scripts/math.uuid.js"></script>
+
+    <script src="/app/directives/slyRepeat.js"></script>
+    <script src="/app/app.js"></script>
+    <script src="/app/config/settings.js"></script>
+    <script src="/app/header/HeaderController.js"></script>
+    <script src="/app/navigation/NavigationController.js"></script>
+    <script src="/app/datagrid/AbstractGridController.js"></script>
+    <script src="/app/datagrid/RemoteGridController.js"></script>
+    <script src="/app/datagrid/LocalGridController.js"></script>
+    <script src="/app/datagrid/CommonGridController.js"></script>
+    <script src="/app/datagrid/CompleteGridController.js"></script>
+    <script src="/app/datagrid/DatagridDirective.js"></script>
+    <script src="/app/project/ProjectController.js"></script>
+    <script src="/app/project/OrderConfirmationController.js"></script>
+    <script src="/app/dashboard/DashboardController.js"></script>
+    <script src="/app/ganttchart/GanttChartDirective.js"></script>
+    <script src="/app/ganttchart/GanttChartController.js"></script>
+    <script src="/app/keyboard/KeyboardDirective.js"></script>
+    <script src="/app/config.routes.js"></script>
+    <script src="/app/services/permissions.js"></script>
+    <script src="/app/services/clipboard.js"></script>
+    <script src="/app/services/common.js"></script>
+    <script src="/app/services/datacontext.js"></script>
+    <script src="/app/services/modal.js"></script>
+    <script src="/app/services/signalr.js"></script>
+    <script src="/app/controllers.js"></script>
+    <script src="/app/directives/ckeditor.js"></script>
+    <script src="/app/directives/draggable.js"></script>
+    <script src="/app/directives/dynamic.js"></script>
+    <script src="/app/directives/enter.js"></script>
+    <script src="/app/directives/tags.js"></script>
+    <script src="/app/directives/toolbar.js"></script>
+    <script src="/app/services/utils.js"></script>
+    <script src="/app/controllers/details.js"></script>
+    <script src="/app/tree/TreeViewController.js"></script>
+    <script src="/signalr/hubs/"></script>
+</body>
+</html>

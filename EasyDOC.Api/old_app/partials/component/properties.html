@@ -1,0 +1,76 @@
+﻿<div class="row">
+    <div class="col-md-4">
+        <table class="property-grid">
+            <tr>
+                <td><label>Series</label></td>
+                <td>
+                    <span class="icn-indent series">
+                        <a ng-href="/series/{{item.SeriesId}}">{{item.Series.Name || 'not set'}}</a>
+                    </span>
+                    <button ng-click="select('series','Series')" class="editable-link">
+                        <i class="fa fa-link">&nbsp;</i>
+                    </button>
+                    <button ng-click="item.SeriesId = null" class="editable-link">
+                        <i class="fa fa-unlink">&nbsp;</i>
+                    </button>
+                </td>
+            </tr>
+
+            <tr>
+                <td><label>Vendor</label></td>
+                <td>
+                    <span class="icn-indent vendor">
+                        <a ng-href="/vendor/{{item.VendorId}}">{{item.Vendor.Name || 'not set'}}</a>
+                    </span>
+                    <button ng-click="select('vendor','Vendor')" class="editable-link">
+                        <i class="fa fa-link">&nbsp;</i>
+                    </button>
+                    <button ng-click="item.VendorId = null" class="editable-link">
+                        <i class="fa fa-unlink">&nbsp;</i>
+                    </button>
+                </td>
+            </tr>
+
+            <tr>
+                <td><label>Category</label></td>
+                <td>
+                    <span class="icn-indent category">
+                        <a ng-href="/category/{{item.CategoryId}}">{{item.Category.Name || 'not set'}}</a>
+                    </span>
+                    <button ng-click="select('category','Category')" class="editable-link">
+                        <i class="fa fa-link">&nbsp;</i>
+                    </button>
+                    <button ng-click="item.CategoryId = null" class="editable-link">
+                        <i class="fa fa-unlink">&nbsp;</i>
+                    </button>
+                </td>
+            </tr>
+
+            <tr>
+                <td><label>Image</label></td>
+                <td>
+                    <button ng-click="select('folder','Image')" class="editable-link">
+                        <i class="fa fa-link">&nbsp;</i>
+                    </button>
+                    <button ng-click="item.ImageId = null" class="editable-link">
+                        <i class="fa fa-unlink">&nbsp;</i>
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="col-md-8">
+        <div ng-if="item.Image == null">
+            <div ng-controller="ImageSearchController">
+                <div class="col-md-6" ng-repeat="item in items" style="width: 120px; height: 120px;">
+                    <a ng-href="{{item.link}}" href="#" class="thumbnail">
+                        <img ng-src="{{item.image.thumbnailLink}}" style="max-width: 90%; max-height: 90%;" />
+                    </a>
+                </div>
+                <button ng-disabled="searching" ng-click="search()" class="btn btn-info"><span ng-if="searching">Searching Google ...</span><span ng-if="!searching">Search for images</span></button>
+            </div>
+        </div>
+        <img ng-if="item.Image" width="300" height="300" ng-src="{{getImagePreview(item.Image, 300, 300)}}" />
+    </div>
+</div>

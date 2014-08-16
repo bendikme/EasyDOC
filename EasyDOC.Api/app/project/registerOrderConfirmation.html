@@ -1,0 +1,36 @@
+﻿<!-- BEGIN FORM-->
+<form class="form-horizontal">
+    <div class="form-body">
+        <h2 class="margin-bottom-10"> Registrer en ny ordrebekreftelse</h2>
+        <h4 class="margin-bottom-25" ng-if="loadingProjects"> Laster prosjekt ...</h4>
+
+        <div ng-if="!loadingProjects">
+            <h4 class="margin-bottom-25"> {{item.ProjectNumber}} - {{item.Name}} ({{item.Customer.Name}})</h4>
+            <div class="row" ng-if="registerOrderConfirmationStep == 1">
+                <div class="col-md-12">
+                    <button type="button" class="btn btn-primary">Last opp en pdf</button> eller
+                    <button type="button" ng-click="" class="btn btn-primary">Velg en pdf fra serveren</button> eller
+                    <button type="button" ng-click="" class="btn btn-primary">Registrer en ordrebekreftelse manuelt</button>
+                </div>
+            </div>
+        </div>
+
+        <div ng-if="hasChanges()" class="form-actions pull-right">
+            <button ng-click="saveChanges()" type="button" class="btn btn-primary">
+                Lagre
+            </button>
+            <button ng-click="cancelChanges()" type="button" class="btn btn-danger">
+                Avbryt
+            </button>
+        </div>
+
+        <div class="form-actions pull-right">
+            <button class="btn btn-primary" ng-click="setRegisterOrderConfirmationStep(registerOrderConfirmationStep - 1)" ng-if="registerOrderConfirmationStep > 1">Tilbake</button>
+            <button class="btn btn-primary" ng-click="setRegisterOrderConfirmationStep(registerOrderConfirmationStep + 1)" ng-if="orderConfirmationRegistered">Neste</button>
+            <a class="btn btn-danger" href="/projects/{{item.ProjectNumber}}">Avbryt</a>
+        </div>
+</form>
+
+
+<div class="clearfix margin-bottom-10">
+</div>

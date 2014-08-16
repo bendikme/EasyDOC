@@ -1,0 +1,10 @@
+﻿<datagrid>
+    
+    <column width="100" order="0" name="Name" property="Name" type="string">
+        <span class="icn-indent role">
+            <a ng-href="/role/{{item.Id}}">{{item.Name}}</a>
+        </span>
+        <span ng-hide="modifyDisabled('Role')" editable-text="item.Name" e-required></span>
+    </column>
+
+</datagrid>

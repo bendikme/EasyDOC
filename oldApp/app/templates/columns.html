@@ -1,0 +1,8 @@
+﻿<span class="dropdown">
+    <span class="dropdown-toggle fa fa-table" data-toggle="tooltip" title="Hide/show columns"></span>
+    <ul class="dropdown-menu pull-right column-selector" ng-model="columns" ui-sortable="columnOrderOptions">
+        <li ng-repeat="column in columns">
+            <a ng-click="toggleColumn(column)">{{column.name}}<span ng-show="column.visible" class="pull-right fa fa-fw fa-check"></span></a>
+        </li>
+    </ul>
+</span>

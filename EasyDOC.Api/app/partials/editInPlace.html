@@ -1,0 +1,13 @@
+﻿
+<table class="easy-table">
+    <tr class="table-row">
+        <td class="cell">
+            <span ng-if="!editMode">{{show}}</span>
+            <input ng-if="editMode" ng-enter="saveChanges()" ng-esc="cancelChanges()" ng-blur="cancelChanges()" type="text" class="editMode" ng-model="view.value" autofocus />
+        </td>
+        <td class="col-button">
+            <button class="editable-link pull-right" ng-click="active=true;"><i class="fa fa-pencil"></i></button>
+            <button class="editable-link" ng-if="editMode" ng-mousedown="saveChanges($event)"><i class="fa fa-save"></i></button>
+        </td>
+    </tr>
+</table>

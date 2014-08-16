@@ -1,0 +1,15 @@
+﻿<datagrid data-type="Chapters" data-cache-key="project-chapters" data-show="20">
+
+    <where property="ProjectId" condition="==" val="{{item.Id}}" />
+
+    <column width="40" order="0" name="Name" property="Name">
+        <span class="icn-indent chapter">
+            <a ng-href="/chapter/{{item.Id}}">{{item.Name}}</a>
+        </span> 
+    </column>
+
+    <column width="60" order="1" name="Description" property="Description">
+        {{item.Description}}
+    </column>
+
+</datagrid>

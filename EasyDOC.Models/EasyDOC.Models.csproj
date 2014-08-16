@@ -1,0 +1,378 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B6545534-0078-47FF-9A5C-56DDFFF0ACB1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EasyDOC.Models</RootNamespace>
+    <AssemblyName>EasyDOC.Models</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AbstractChapter.cs" />
+    <Compile Include="AbstractComponent.cs" />
+    <Compile Include="Category.cs" />
+    <Compile Include="Chapter.cs" />
+    <Compile Include="ChapterFile.cs" />
+    <Compile Include="Component.cs" />
+    <Compile Include="ComponentFile.cs" />
+    <Compile Include="ComponentMaintenance.cs" />
+    <Compile Include="ComponentSafety.cs" />
+    <Compile Include="ComponentSeries.cs" />
+    <Compile Include="DatabaseLog.cs" />
+    <Compile Include="EmployeeTask.cs" />
+    <Compile Include="IIdentifyable.cs" />
+    <Compile Include="Migrations\201403030810349_Initial.cs" />
+    <Compile Include="Migrations\201403030810349_Initial.Designer.cs">
+      <DependentUpon>201403030810349_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201403031045311_RemoveType.cs" />
+    <Compile Include="Migrations\201403031045311_RemoveType.Designer.cs">
+      <DependentUpon>201403031045311_RemoveType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201403031500000_Indices.cs" />
+    <Compile Include="Migrations\201403030900196_Indices.Designer.cs">
+      <DependentUpon>201403031500000_Indices.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201403031036469_MaxLengths.cs" />
+    <Compile Include="Migrations\201403031036469_MaxLengths.Designer.cs">
+      <DependentUpon>201403031036469_MaxLengths.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201403031840447_GanttTaskTables.cs" />
+    <Compile Include="Migrations\201403031840447_GanttTaskTables.Designer.cs">
+      <DependentUpon>201403031840447_GanttTaskTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201403032312221_TaskLinksAndCustomId.cs" />
+    <Compile Include="Migrations\201403032312221_TaskLinksAndCustomId.Designer.cs">
+      <DependentUpon>201403032312221_TaskLinksAndCustomId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201403032337360_IdentityIds.cs" />
+    <Compile Include="Migrations\201403032337360_IdentityIds.Designer.cs">
+      <DependentUpon>201403032337360_IdentityIds.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201403032339424_TaskOptionalType.cs" />
+    <Compile Include="Migrations\201403032339424_TaskOptionalType.Designer.cs">
+      <DependentUpon>201403032339424_TaskOptionalType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201403040005372_NotGeneratedIds.cs" />
+    <Compile Include="Migrations\201403040005372_NotGeneratedIds.Designer.cs">
+      <DependentUpon>201403040005372_NotGeneratedIds.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201403040020598_RemoveTasks.cs" />
+    <Compile Include="Migrations\201403040020598_RemoveTasks.Designer.cs">
+      <DependentUpon>201403040020598_RemoveTasks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201403040023015_AddTasks.cs" />
+    <Compile Include="Migrations\201403040023015_AddTasks.Designer.cs">
+      <DependentUpon>201403040023015_AddTasks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201403041605598_TaskTypeEnums.cs" />
+    <Compile Include="Migrations\201403041605598_TaskTypeEnums.Designer.cs">
+      <DependentUpon>201403041605598_TaskTypeEnums.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201403041636150_TaskLinkProjectId.cs" />
+    <Compile Include="Migrations\201403041636150_TaskLinkProjectId.Designer.cs">
+      <DependentUpon>201403041636150_TaskLinkProjectId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201403052029139_ExtendedAccessControl.cs" />
+    <Compile Include="Migrations\201403052029139_ExtendedAccessControl.Designer.cs">
+      <DependentUpon>201403052029139_ExtendedAccessControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201403052115502_ExtendedAccessControl2.cs" />
+    <Compile Include="Migrations\201403052115502_ExtendedAccessControl2.Designer.cs">
+      <DependentUpon>201403052115502_ExtendedAccessControl2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201403140959363_OverwritableFile.cs" />
+    <Compile Include="Migrations\201403140959363_OverwritableFile.Designer.cs">
+      <DependentUpon>201403140959363_OverwritableFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201403151940339_Logging.cs" />
+    <Compile Include="Migrations\201403151940339_Logging.Designer.cs">
+      <DependentUpon>201403151940339_Logging.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201403170931239_DatabaseLogFreeLengthContent.cs" />
+    <Compile Include="Migrations\201403170931239_DatabaseLogFreeLengthContent.Designer.cs">
+      <DependentUpon>201403170931239_DatabaseLogFreeLengthContent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201404022304086_TaskEndDate.cs" />
+    <Compile Include="Migrations\201404022304086_TaskEndDate.Designer.cs">
+      <DependentUpon>201404022304086_TaskEndDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201404030021455_TaskColorAndLinks.cs" />
+    <Compile Include="Migrations\201404030021455_TaskColorAndLinks.Designer.cs">
+      <DependentUpon>201404030021455_TaskColorAndLinks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201404030022584_TaskLinks.cs" />
+    <Compile Include="Migrations\201404030022584_TaskLinks.Designer.cs">
+      <DependentUpon>201404030022584_TaskLinks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201404030946565_TaskLinkProject.cs" />
+    <Compile Include="Migrations\201404030946565_TaskLinkProject.Designer.cs">
+      <DependentUpon>201404030946565_TaskLinkProject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201404031233314_TaskLinkFixDelete.cs" />
+    <Compile Include="Migrations\201404031233314_TaskLinkFixDelete.Designer.cs">
+      <DependentUpon>201404031233314_TaskLinkFixDelete.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201404031234275_TaskLinkFixRestore.cs" />
+    <Compile Include="Migrations\201404031234275_TaskLinkFixRestore.Designer.cs">
+      <DependentUpon>201404031234275_TaskLinkFixRestore.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201404060018444_TaskId.cs" />
+    <Compile Include="Migrations\201404060018444_TaskId.Designer.cs">
+      <DependentUpon>201404060018444_TaskId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201404060031354_TaskId2.cs" />
+    <Compile Include="Migrations\201404060031354_TaskId2.Designer.cs">
+      <DependentUpon>201404060031354_TaskId2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201404110934010_NewTaskModel.cs" />
+    <Compile Include="Migrations\201404110934010_NewTaskModel.Designer.cs">
+      <DependentUpon>201404110934010_NewTaskModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201404110937427_NewTaskModel2.cs" />
+    <Compile Include="Migrations\201404110937427_NewTaskModel2.Designer.cs">
+      <DependentUpon>201404110937427_NewTaskModel2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201404111032213_NewTaskModel3.cs" />
+    <Compile Include="Migrations\201404111032213_NewTaskModel3.Designer.cs">
+      <DependentUpon>201404111032213_NewTaskModel3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201404181820372_TaskWBS.cs" />
+    <Compile Include="Migrations\201404181820372_TaskWBS.Designer.cs">
+      <DependentUpon>201404181820372_TaskWBS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201404250823196_ProjectStartDate.cs" />
+    <Compile Include="Migrations\201404250823196_ProjectStartDate.Designer.cs">
+      <DependentUpon>201404250823196_ProjectStartDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407240851535_ProjectHasOrderConfirmations.cs" />
+    <Compile Include="Migrations\201407240851535_ProjectHasOrderConfirmations.Designer.cs">
+      <DependentUpon>201407240851535_ProjectHasOrderConfirmations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407252005186_OrderConfirmationFileReference.cs" />
+    <Compile Include="Migrations\201407252005186_OrderConfirmationFileReference.Designer.cs">
+      <DependentUpon>201407252005186_OrderConfirmationFileReference.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407300812227_TaskCheckPoint.cs" />
+    <Compile Include="Migrations\201407300812227_TaskCheckPoint.Designer.cs">
+      <DependentUpon>201407300812227_TaskCheckPoint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407311750256_MasterProject.cs" />
+    <Compile Include="Migrations\201407311750256_MasterProject.Designer.cs">
+      <DependentUpon>201407311750256_MasterProject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="OrderConfirmation.cs" />
+    <Compile Include="Experience.cs" />
+    <Compile Include="ISafetyRelation.cs" />
+    <Compile Include="TaskCheckPoint.cs" />
+    <Compile Include="SafetyRole.cs" />
+    <Compile Include="Customer.cs" />
+    <Compile Include="DatabaseObject.cs" />
+    <Compile Include="Documentation.cs" />
+    <Compile Include="DocumentationChapter.cs" />
+    <Compile Include="Employee.cs" />
+    <Compile Include="File.cs" />
+    <Compile Include="FileRole.cs" />
+    <Compile Include="Folder.cs" />
+    <Compile Include="GeneratedChapter.cs" />
+    <Compile Include="IEntity.cs" />
+    <Compile Include="IFileRelation.cs" />
+    <Compile Include="IHistoryEntity.cs" />
+    <Compile Include="IMaintenanceRelation.cs" />
+    <Compile Include="IOrderedRelation.cs" />
+    <Compile Include="ISoftDeletable.cs" />
+    <Compile Include="Maintenance.cs" />
+    <Compile Include="ManualContext.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="ManualInitializer.cs" />
+    <Compile Include="PdfChapter.cs" />
+    <Compile Include="Permission.cs" />
+    <Compile Include="Project.cs" />
+    <Compile Include="ProjectComponent.cs" />
+    <Compile Include="ProjectFile.cs" />
+    <Compile Include="ProjectMaintenance.cs" />
+    <Compile Include="ProjectSafety.cs" />
+    <Compile Include="ProjectStatus.cs" />
+    <Compile Include="Role.cs" />
+    <Compile Include="RolePermission.cs" />
+    <Compile Include="Safety.cs" />
+    <Compile Include="ServiceLog.cs" />
+    <Compile Include="SoftDeletableDatabaseObject.cs" />
+    <Compile Include="TaskCalendar.cs" />
+    <Compile Include="TaskConstraint.cs" />
+    <Compile Include="TaskLink.cs" />
+    <Compile Include="Task.cs" />
+    <Compile Include="TaskLinkType.cs" />
+    <Compile Include="TaskState.cs" />
+    <Compile Include="Unit.cs" />
+    <Compile Include="User.cs" />
+    <Compile Include="UserRole.cs" />
+    <Compile Include="Vendor.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201403030810349_Initial.resx">
+      <DependentUpon>201403030810349_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403030900196_Indices.resx">
+      <DependentUpon>201403031500000_Indices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403031036469_MaxLengths.resx">
+      <DependentUpon>201403031036469_MaxLengths.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403031045311_RemoveType.resx">
+      <DependentUpon>201403031045311_RemoveType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403031840447_GanttTaskTables.resx">
+      <DependentUpon>201403031840447_GanttTaskTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403032312221_TaskLinksAndCustomId.resx">
+      <DependentUpon>201403032312221_TaskLinksAndCustomId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403032337360_IdentityIds.resx">
+      <DependentUpon>201403032337360_IdentityIds.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403032339424_TaskOptionalType.resx">
+      <DependentUpon>201403032339424_TaskOptionalType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403040005372_NotGeneratedIds.resx">
+      <DependentUpon>201403040005372_NotGeneratedIds.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403040020598_RemoveTasks.resx">
+      <DependentUpon>201403040020598_RemoveTasks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403040023015_AddTasks.resx">
+      <DependentUpon>201403040023015_AddTasks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403041605598_TaskTypeEnums.resx">
+      <DependentUpon>201403041605598_TaskTypeEnums.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403041636150_TaskLinkProjectId.resx">
+      <DependentUpon>201403041636150_TaskLinkProjectId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403052029139_ExtendedAccessControl.resx">
+      <DependentUpon>201403052029139_ExtendedAccessControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403052115502_ExtendedAccessControl2.resx">
+      <DependentUpon>201403052115502_ExtendedAccessControl2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403140959363_OverwritableFile.resx">
+      <DependentUpon>201403140959363_OverwritableFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403151940339_Logging.resx">
+      <DependentUpon>201403151940339_Logging.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403170931239_DatabaseLogFreeLengthContent.resx">
+      <DependentUpon>201403170931239_DatabaseLogFreeLengthContent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404022304086_TaskEndDate.resx">
+      <DependentUpon>201404022304086_TaskEndDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404030021455_TaskColorAndLinks.resx">
+      <DependentUpon>201404030021455_TaskColorAndLinks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404030022584_TaskLinks.resx">
+      <DependentUpon>201404030022584_TaskLinks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404030946565_TaskLinkProject.resx">
+      <DependentUpon>201404030946565_TaskLinkProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404031233314_TaskLinkFixDelete.resx">
+      <DependentUpon>201404031233314_TaskLinkFixDelete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404031234275_TaskLinkFixRestore.resx">
+      <DependentUpon>201404031234275_TaskLinkFixRestore.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404060018444_TaskId.resx">
+      <DependentUpon>201404060018444_TaskId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404060031354_TaskId2.resx">
+      <DependentUpon>201404060031354_TaskId2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404110934010_NewTaskModel.resx">
+      <DependentUpon>201404110934010_NewTaskModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404110937427_NewTaskModel2.resx">
+      <DependentUpon>201404110937427_NewTaskModel2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404111032213_NewTaskModel3.resx">
+      <DependentUpon>201404111032213_NewTaskModel3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404181820372_TaskWBS.resx">
+      <DependentUpon>201404181820372_TaskWBS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404250823196_ProjectStartDate.resx">
+      <DependentUpon>201404250823196_ProjectStartDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407240851535_ProjectHasOrderConfirmations.resx">
+      <DependentUpon>201407240851535_ProjectHasOrderConfirmations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407252005186_OrderConfirmationFileReference.resx">
+      <DependentUpon>201407252005186_OrderConfirmationFileReference.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407300812227_TaskCheckPoint.resx">
+      <DependentUpon>201407300812227_TaskCheckPoint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407311750256_MasterProject.resx">
+      <DependentUpon>201407311750256_MasterProject.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

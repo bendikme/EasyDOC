@@ -1,0 +1,37 @@
+﻿<datagrid>
+
+    <column width="15" order="0" name="Article Number" property="Component.Name" type="string">
+        <span class="icn-indent component">
+            <a ng-href="/component/{{item.ComponentId}}">{{item.Component.Name}}</a>
+        </span> 
+    </column>
+
+    <column width="25" order="1" name="Description" property="Component.Description" type="string">
+         {{item.Component.Description}}
+    </column>
+
+    <column width="25" order="2" name="Order Details" property="OrderSpecificDescription" type="string">
+         {{item.OrderSpecificDescription}}
+    </column>
+
+    <column width="7" order="3" name="Quantity" property="Quantity" type="number">
+         {{item.Quantity}}
+    </column>
+
+    <column width="7" order="4" name="Unit" property="Unit">
+         {{item.Unit}}
+    </column>
+
+    <column width="7" order="5" name="Unit price" property="AmountPerUnit" type="number">
+        {{item.AmountPerUnit | currency: "" }}
+    </column>
+
+    <column width="7" order="6" name="Discount" property="Discount" type="number">
+         {{item.Discount}}%
+    </column>
+
+    <column width="7" order="7" name="Total" property="TotalAmount" type="number">
+         {{item.TotalAmount | currency: "" }}
+    </column>
+
+</datagrid>

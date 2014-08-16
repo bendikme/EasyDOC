@@ -1,0 +1,267 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
+using System.Web;
+using System.Web.Http;
+using System.Web.Http.OData.Query;
+using Breeze.WebApi;
+using EasyDOC.BLL.Services;
+using EasyDOC.DAL.DataAccess;
+using EasyDOC.Model;
+using EasyDOC.Pdf.ManualTableGenerators;
+using Microsoft.AspNet.SignalR;
+using Newtonsoft.Json.Linq;
+using WebMatrix.WebData;
+using File = EasyDOC.Model.File;
+using SaveResult = Breeze.ContextProvider.SaveResult;
+using Task = EasyDOC.Model.Task;
+using Type = EasyDOC.Model.Type;
+
+namespace EasyDOC.Api.Controllers
+{
+    [System.Web.Http.Authorize]
+    [BreezeController]
+    [BreezeQueryable(
+        AllowedArithmeticOperators = AllowedArithmeticOperators.All,
+        AllowedLogicalOperators = AllowedLogicalOperators.All,
+        MaxAnyAllExpressionDepth = 10,
+        AllowedQueryOptions = AllowedQueryOptions.All,
+        AllowedFunctions = AllowedFunctions.AllFunctions,
+        MaxNodeCount = 9999,
+        MaxTop = 100
+    )]
+    public class EasyDocController : ApiController
+    {
+        protected readonly ManualContextProvider ContextProvider = new ManualContextProvider();
+        private UnitOfWork _uow;
+
+        [HttpGet]
+        public string Metadata()
+        {
+            return ContextProvider.Metadata();
+        }
+
+
+        [HttpGet]
+        public int CurrentUserId() { return WebSecurity.CurrentUserId; }
+
+        [HttpGet]
+        public IQueryable<Project> Projects() { return ContextProvider.Context.Projects; }
+        [HttpGet]
+        public IQueryable<ProjectFile> ProjectFiles() { return ContextProvider.Context.ProjectFiles; }
+        [HttpGet]
+        public IQueryable<ProjectComponent> ProjectComponents() { return ContextProvider.Context.ProjectComponents; }
+        [HttpGet]
+        public IQueryable<ProjectMaintenance> ProjectMaintenances() { return ContextProvider.Context.ProjectMaintenances; }
+        [HttpGet]
+        public IQueryable<ProjectSafety> ProjectSafeties() { return ContextProvider.Context.ProjectSafeties; }
+
+        [HttpGet]
+        public IQueryable<Component> Components() { return ContextProvider.Context.Components.OfType<Component>(); }
+        [HttpGet]
+        public IQueryable<ComponentSeries> ComponentSeries() { return ContextProvider.Context.Components.OfType<ComponentSeries>(); }
+        [HttpGet]
+        public IQueryable<ComponentFile> ComponentFiles() { return ContextProvider.Context.ComponentFiles; }
+        [HttpGet]
+        public IQueryable<ComponentMaintenance> ComponentMaintenances() { return ContextProvider.Context.ComponentMaintenances; }
+        [HttpGet]
+        public IQueryable<ComponentSafety> ComponentSafeties() { return ContextProvider.Context.ComponentSafeties; }
+
+        [HttpGet]
+        public IQueryable<Category> Categories() { return ContextProvider.Context.Categories; }
+        [HttpGet]
+        public IQueryable<Customer> Customers() { return ContextProvider.Context.Customers; }
+        [HttpGet]
+        public IQueryable<Documentation> Documentations() { return ContextProvider.Context.Documentations; }
+        [HttpGet]
+        public IQueryable<DocumentationChapter> DocumentationChapters() { return ContextProvider.Context.DocumentationChapters; }
+        [HttpGet]
+        public IQueryable<Employee> Employees() { return ContextProvider.Context.Employees; }
+        [HttpGet]
+        public IQueryable<EmployeeTask> EmployeeTasks() { return ContextProvider.Context.EmployeeTasks; }
+        [HttpGet]
+        public IQueryable<Experience> Experiences() { return ContextProvider.Context.Experiences; }
+        [HttpGet]
+        public IQueryable<FileRole> FileRoles() { return ContextProvider.Context.FileRoles; }
+        [HttpGet]
+        public IQueryable<SafetyRole> SafetyRoles() { return ContextProvider.Context.SafetyRoles; }
+        [HttpGet]
+        public IQueryable<File> Files() { return ContextProvider.Context.Manuals; }
+        [HttpGet]
+        public IQueryable<Folder> Folders() { return ContextProvider.Context.Catalogs; }
+        [HttpGet]
+        public IQueryable<Maintenance> Maintenances() { return ContextProvider.Context.Maintenances; }
+        [HttpGet]
+        public IQueryable<Safety> Safeties() { return ContextProvider.Context.Safeties; }
+        [HttpGet]
+        public IQueryable<Task> Tasks() { return ContextProvider.Context.Tasks; }
+        [HttpGet]
+        public IQueryable<TaskType> TaskTypes() { return ContextProvider.Context.TaskTypes; }
+        [HttpGet]
+        public IQueryable<TaskState> TaskStates() { return ContextProvider.Context.TaskStates; }
+        [HttpGet]
+        public IQueryable<ProjectStatus> ProjectStatus() { return ContextProvider.Context.ProjectStatus; }
+        [HttpGet]
+        public IQueryable<Type> Types() { return ContextProvider.Context.Types; }
+        [HttpGet]
+        public IQueryable<User> Users() { return ContextProvider.Context.Users; }
+        [HttpGet]
+        public IQueryable<Role> Roles() { return ContextProvider.Context.Roles; }
+        [HttpGet]
+        public IQueryable<OrderConfirmation> OrderConfirmations() { return ContextProvider.Context.OrderConfirmations; }
+        [HttpGet]
+        public IQueryable<OrderConfirmationItem> OrderConfirmationItems() { return ContextProvider.Context.OrderConfirmationItems; }
+        [HttpGet]
+        public IQueryable<Permission> Permissions() { return ContextProvider.Context.Permissions; }
+        [HttpGet]
+        public IQueryable<UserRole> UserRoles() { return ContextProvider.Context.UserRoles; }
+        [HttpGet]
+        public IQueryable<RolePermission> RolePermissions() { return ContextProvider.Context.RolePermissions; }
+        [HttpGet]
+        public IQueryable<Vendor> Vendors() { return ContextProvider.Context.Vendors; }
+
+        [HttpGet]
+        public IQueryable<AbstractChapter> AllChapters() { return ContextProvider.Context.Chapters; }
+        [HttpGet]
+        public IQueryable<AbstractComponent> AllComponents() { return ContextProvider.Context.Components; }
+        [HttpGet]
+        public IQueryable<Chapter> Chapters() { return ContextProvider.Context.Chapters.OfType<Chapter>(); }
+
+        [HttpGet]
+        public IQueryable<ChapterFile> ChapterFiles() { return ContextProvider.Context.ChapterFiles; }
+        [HttpGet]
+        public IQueryable<GeneratedChapter> GeneratedChapters() { return ContextProvider.Context.Chapters.OfType<GeneratedChapter>(); }
+        [HttpGet]
+        public IQueryable<PdfChapter> PdfChapters() { return ContextProvider.Context.Chapters.OfType<PdfChapter>(); }
+
+        [HttpPost]
+        public SaveResult SaveChanges(JObject saveBundle)
+        {
+            var result = ContextProvider.SaveChanges(saveBundle);
+            var hub = GlobalHost.ConnectionManager.GetHubContext<EntityHub>();
+            hub.Clients.All.entitiesChanged(result);
+            return result;
+        }
+
+        [HttpGet]
+        public HttpResponseMessage ExportPdf(int id = 0)
+        {
+            _uow = new UnitOfWork(ContextProvider.EntityConnection);
+            var documentation = _uow.DocumentationRepository.GetByKey(id);
+
+            var pdf = new DocumentationPdfCreator(documentation, new AbstractChapterService(null, _uow, _uow.ChapterRepository), HttpContext.Current.ApplicationInstance.Server.MapPath("/"));
+
+            var result = new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                Content = new StreamContent(pdf.GetPdf())
+            };
+
+            result.Content.Headers.ContentType = new MediaTypeHeaderValue("application/pdf");
+
+            return result;
+        }
+
+        private IEnumerable<Permission> GetUserPermissions(int userId)
+        {
+            var uow = new UnitOfWork(ContextProvider.EntityConnection);
+            var user = uow.UserRepository.GetByKeyNoTracking(userId);
+            var permission = user.Roles.SelectMany(r => r.Role.Permissions).FirstOrDefault(p => p.Permission.Name == "File");
+        }
+
+        [HttpPost]
+        public async Task<HttpResponseMessage> Upload()
+        {
+            string root = HttpContext.Current.Server.MapPath("~/");
+            var provider = new MultipartFormDataStreamProvider(root);
+
+            try
+            {
+                var uow = new UnitOfWork(ContextProvider.EntityConnection);
+                var user = uow.UserRepository.GetByKeyNoTracking(WebSecurity.CurrentUserId);
+                var permission = user.Roles.SelectMany(r => r.Role.Permissions).FirstOrDefault(p => p.Permission.Name == "File");
+
+                // Check if the request contains multipart/form-data.
+                if (!Request.Content.IsMimeMultipartContent())
+                {
+                    throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
+                }
+
+                if (permission == null || !permission.Create)
+                {
+                    throw new HttpResponseException(HttpStatusCode.Forbidden);
+                }
+
+                // Read the form data.
+                var form = await Request.Content.ReadAsMultipartAsync(provider);
+                var id = Int32.Parse(form.FormData["folderId"]);
+
+                var fileService = new FileService(null, uow);
+                var folderService = new CatalogService(null, uow);
+                var folder = folderService.GetByKey(id);
+
+                if (folder == null)
+                {
+                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                }
+
+                // This illustrates how to get the file names.
+                foreach (var fileData in provider.FileData)
+                {
+                    var filename = fileData.Headers.ContentDisposition.FileName.Replace("\"", "");
+
+                    var type = filename.Split('.').Last();
+                    var name = filename.Substring(0, filename.LastIndexOf(type, StringComparison.Ordinal) - 1);
+
+                    var newFile = root + folder.GetWindowsPath() + '\\' + filename;
+
+                    var info = new FileInfo(fileData.LocalFileName);
+                    var size = info.Length;
+
+                    if (System.IO.File.Exists(newFile))
+                    {
+                        throw new HttpResponseException(HttpStatusCode.Found);
+                    }
+                    else if (uow.FileRepository.Get(f => f.Name.ToLower() == name.ToLower() && f.Type == type.ToLower()).Any())
+                    {
+                        throw new HttpResponseException(HttpStatusCode.Ambiguous);
+                    }
+
+                    System.IO.File.Copy(fileData.LocalFileName, newFile);
+
+                    var file = new File
+                    {
+                        CatalogId = id,
+                        Name = name,
+                        FileSize = (int)size,
+                        Type = type.ToLower(),
+                        CreatorId = WebSecurity.CurrentUserId
+                    };
+
+                    fileService.Create(file);
+                }
+
+                uow.Commit();
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            finally
+            {
+                // Delete temporary files 
+                foreach (var fileData in provider.FileData)
+                {
+                    System.IO.File.Delete(fileData.LocalFileName);
+                }
+            }
+        }
+    }
+
+    public class EntityHub : Hub
+    {
+
+    }
+}

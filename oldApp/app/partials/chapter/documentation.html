@@ -1,0 +1,13 @@
+﻿<datagrid>
+
+    <column width="10" order="0" name="Chapter" property="ChapterNumber" type="string">
+        {{item.ChapterNumber}}
+    </column>
+
+    <column width="90" order="1" name="Name" property="Documentation.Name" type="string">
+        <span class="icn-indent documentation">
+            <a ng-href="/documentation/{{item.DocumentationId}}">{{item.Documentation.Name}}</a>
+        </span> 
+    </column>
+
+</datagrid>

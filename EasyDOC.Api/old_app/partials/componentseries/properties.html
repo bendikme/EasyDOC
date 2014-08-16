@@ -1,0 +1,34 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        <table class="property-grid">
+            <tr>
+                <td><label>Description</label></td>
+                <td>
+                    <span class="icn-indent vendor">
+                        <a ng-href="/vendor/{{item.VendorId}}">{{item.Vendor.Name || 'not set'}}</a>
+                    </span>
+                    <button ng-click="select('vendor','Vendor')" class="editable-link">
+                        <i class="fa fa-link">&nbsp;</i>
+                    </button>
+                    <button ng-click="item.VendorId = null" class="editable-link">
+                        <i class="fa fa-unlink">&nbsp;</i>
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Category</label></td>
+                <td>
+                    <span class="icn-indent category">
+                        <a ng-href="/category/{{item.CategoryId}}">{{item.Category.Name || 'not set'}}</a>
+                    </span>
+                    <button ng-click="select('category','Category')" class="editable-link">
+                        <i class="fa fa-link">&nbsp;</i>
+                    </button>
+                    <button ng-click="item.CategoryId = null" class="editable-link">
+                        <i class="fa fa-unlink">&nbsp;</i>
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

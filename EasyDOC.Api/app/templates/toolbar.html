@@ -1,0 +1,15 @@
+﻿<div class="margin-bottom-10">
+    <span sly-repeat="button in toolbar | orderBy:'order'">
+        <button class="btn btn-sm blue" ng-if="button.visible" ng-disabled="button.disabled" ng-click="button.action()">
+            <i class="fa fa-fw {{button.icon}}"></i> {{button.tooltip.title}}
+        </button>
+    </span>
+    <div class="pull-right">
+        <button class="btn btn-sm green" ng-click="toggleFilters()">
+            <i class="fa fa-fw fa-filter"></i>
+        </button>
+        <button class="btn btn-sm green" data-toggle="modal" data-target="#column-dialog">
+            <i class="fa fa-fw fa-gear"></i>
+        </button>
+    </div>
+</div>

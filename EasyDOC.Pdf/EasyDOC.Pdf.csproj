@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5513713A-E2FB-42EE-BF1B-F9B4F6B23B52}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EasyDOC.Pdf</RootNamespace>
+    <AssemblyName>EasyDOC.Pdf</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SkipPostSharp>True</SkipPostSharp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.6\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.2.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\iTextSharp.5.5.2\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="LinqToExcel, Version=1.7.1.0, Culture=neutral, PublicKeyToken=9c8ea65a58f03f1f, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\LinqToExcel.1.7.1\lib\LinqToExcel.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\LinqToExcel.1.7.1\lib\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamic, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion, Version=1.13.52.2, Culture=neutral, PublicKeyToken=0669cf0452175907, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\LinqToExcel.1.7.1\lib\Remotion.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion.Data.Linq, Version=1.13.52.2, Culture=neutral, PublicKeyToken=0669cf0452175907, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\LinqToExcel.1.7.1\lib\Remotion.Data.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion.Interfaces, Version=1.13.52.2, Culture=neutral, PublicKeyToken=0669cf0452175907, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\LinqToExcel.1.7.1\lib\Remotion.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ConfirmationOrderParsers\AbstractOrderConfirmationParser.cs" />
+    <Compile Include="ConfirmationOrderParsers\Lesjofors.cs" />
+    <Compile Include="ConfirmationOrderParsers\SEW.cs" />
+    <Compile Include="ConfirmationOrderParsers\Rollco.cs" />
+    <Compile Include="ConfirmationOrderParsers\Roca.cs" />
+    <Compile Include="ConfirmationOrderParsers\Volta.cs" />
+    <Compile Include="ConfirmationOrderParsers\ElectroDrives.cs" />
+    <Compile Include="ConfirmationOrderParsers\Festo.cs" />
+    <Compile Include="ConfirmationOrderParsers\Intralox.cs" />
+    <Compile Include="ConfirmationOrderParsers\Boxon.cs" />
+    <Compile Include="ConfirmationOrderParsers\JensS.cs" />
+    <Compile Include="ConfirmationOrderParsers\Kulelagerhuset.cs" />
+    <Compile Include="ConfirmationOrderParsers\MurrElektronik.cs" />
+    <Compile Include="ConfirmationOrderParsers\Omron.cs" />
+    <Compile Include="ConfirmationOrderParsers\OttoOlsen.cs" />
+    <Compile Include="ConfirmationOrderParsers\Sick.cs" />
+    <Compile Include="ManualTableGenerators\AttachmentsTableBuilder.cs" />
+    <Compile Include="ManualTableGenerators\ComponentTableBuilder.cs" />
+    <Compile Include="ManualTableGenerators\SafetyTableBuilder.cs" />
+    <Compile Include="ManualTableGenerators\FrontPageBuilder.cs" />
+    <Compile Include="ManualTableGenerators\DocumentationPdfCreator.cs" />
+    <Compile Include="ManualTableGenerators\DocxToPdf.cs" />
+    <Compile Include="ManualTableGenerators\FormattingOptions.cs" />
+    <Compile Include="ManualTableGenerators\HtmlToPdf.cs" />
+    <Compile Include="ManualTableGenerators\MaintenanceTableBuilder.cs" />
+    <Compile Include="ManualTableGenerators\PdfEvents.cs" />
+    <Compile Include="ManualTableGenerators\PdfFonts.cs" />
+    <Compile Include="ManualTableGenerators\PdfMenuItem.cs" />
+    <Compile Include="ManualTableGenerators\SewDataTableBuilder.cs" />
+    <Compile Include="ManualTableGenerators\SpantechDataTableBuilder.cs" />
+    <Compile Include="ManualTableGenerators\SpantechPart.cs" />
+    <Compile Include="ManualTableGenerators\StripSpantechExcelFile.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EasyDOC.BLL\EasyDOC.BLL.csproj">
+      <Project>{771BF1B0-CC81-4F9A-ADE0-A8CEEF298F5E}</Project>
+      <Name>EasyDOC.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EasyDOC.DAL\EasyDOC.DAL.csproj">
+      <Project>{32BCD1FD-1DAD-4146-BD0B-0A2678208FE8}</Project>
+      <Name>EasyDOC.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EasyDOC.Models\EasyDOC.Models.csproj">
+      <Project>{b6545534-0078-47ff-9a5c-56ddfff0acb1}</Project>
+      <Name>EasyDOC.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EasyDOC.Pdf.Interface\EasyDOC.Pdf.Interface.csproj">
+      <Project>{07DC95D5-2E6C-4CD8-948B-C2620469934F}</Project>
+      <Name>EasyDOC.Pdf.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EasyDOC.Utilities\EasyDOC.Utilities.csproj">
+      <Project>{C0ECB312-80EA-4BD3-852E-5323FE207D8E}</Project>
+      <Name>EasyDOC.Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

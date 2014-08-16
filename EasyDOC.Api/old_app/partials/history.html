@@ -1,0 +1,11 @@
+﻿<span class="pull-right" ng-init="showCreatedAgo = true" ng-click="showCreatedAgo = !showCreatedAgo" ng-show="item.Creator != null">
+    <i class="fa fa-fw fa-clock-o">&nbsp;</i>Created by {{item.Creator.Name}} 
+        <span ng-show="showCreatedAgo" am-time-ago="item.Created"></span>
+    <span ng-hide="showCreatedAgo">{{item.Created | amDateFormat: 'dddd, Do MMMM YYYY, HH:mm:ss'}}</span>
+</span>
+<br />
+<span class="pull-right" ng-init="showEditedAgo = true" ng-click="showEditedAgo = !showEditedAgo" ng-show="item.Editor != null">
+    <i class="fa fa-fw fa-edit">&nbsp;</i>Edited by {{item.Editor.Name}} 
+        <span ng-show="showEditedAgo" am-time-ago="item.Edited"></span>
+    <span ng-hide="showEditedAgo">{{item.Edited | amDateFormat: 'dddd, Do MMMM YYYY, HH:mm:ss'}}</span>
+</span>

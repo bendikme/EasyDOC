@@ -1,0 +1,476 @@
+﻿canvas {
+    -ms-interpolation-mode: nearest-neighbor;
+    image-rendering: optimizeSpeed;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: -o-crisp-edges;
+    image-rendering: optimize-contrast;
+}
+
+textarea.editMode,
+input.editMode {
+    border: 0;
+    color: #555;
+    font-style: italic;
+    font-weight: bold;
+    height: 100%;
+    outline: 0;
+    padding: 0;
+    width: 100%;
+}
+
+a, a:hover {
+    color: #444;
+}
+
+
+.inside-tab {
+    background-color: #FFF;
+    border: 1px solid #DDD;
+    border-top: 0;
+    margin-bottom: 15px;
+    padding: 10px;
+    padding-top: 0;
+    padding-bottom: 50px;
+}
+
+.tabbable-custom {
+    margin-bottom: 0;
+}
+
+    .tabbable-custom .tab-content {
+        border-bottom: 0;
+    }
+
+table.property-grid td {
+    padding: 4px 30px 4px 0;
+    vertical-align: top;
+}
+
+#task-overlay {
+    left: 0;
+    position: absolute;
+    top: 0;
+}
+
+.handle {
+    color: black;
+    cursor: col-resize;
+    float: right;
+    height: 28px;
+    width: 3px;
+}
+
+.task {
+    padding: 6px;
+    position: absolute;
+}
+
+.task-inner {
+    background: #555;
+    border-radius: 2px;
+    color: white;
+    font-size: 12px;
+    height: 100%;
+    padding: 1px 4px;
+    width: 100%;
+}
+
+tr.invalid * {
+    color: red !important;
+}
+
+.nav-pills > li {
+    cursor: pointer;
+}
+
+    .nav-pills > li > a {
+        border-radius: 5px 5px 0 0;
+    }
+
+.gantt-parent-row {
+    font-weight: bold;
+}
+
+.gantt-parent-column:before {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    content: "\f0d7";
+    display: inline-block;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    text-align: center;
+    width: 1.2857142857142858em;
+}
+
+.gantt-child-column:before {
+    content: "\f0d7";
+    display: inline-block;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    opacity: 0;
+    text-align: center;
+    width: 1.2857142857142858em;
+}
+
+.floating-list {
+    background: white;
+    height: 100%;
+    left: 0;
+    padding-bottom: 70px;
+    padding-top: 70px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+input[type=range] {
+    width: 130px;
+    -webkit-appearance: none;
+    background-color: #999;
+    height: 6px;
+    vertical-align: middle;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none !important;
+    border: 1px solid #999;
+    background: white;
+    height: 15px;
+    width: 10px;
+}
+
+.scrollbar-measure {
+    width: 100px;
+    height: 100px;
+    overflow: scroll;
+    position: absolute;
+    top: -9999px;
+}
+
+.e-table table {
+    background: #f8f8f8;
+}
+
+    .e-table table thead {
+        background: #efefef;
+    }
+
+.e-table-header {
+    overflow: hidden;
+}
+
+.e-table-content {
+    overflow: auto;
+    overflow-x: auto;
+    overflow-y: scroll;
+    position: relative;
+    zoom: 1;
+}
+
+.table {
+    margin-bottom: 0 !important;
+    table-layout: fixed;
+}
+
+    .table td .btn-xs {
+        margin-right: 2px;
+        padding: 1px;
+    }
+
+    .table td, .table td div, table th, table th div {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        vertical-align: middle;
+    }
+
+    .table thead tr th {
+        text-transform: uppercase;
+    }
+
+th ul.dropdown-menu {
+    padding: 4px;
+}
+
+th .dropdown-header {
+    color: black;
+}
+
+th ul.dropdown-menu .form-control {
+    font-size: 11px;
+    height: 20px !important;
+    margin: 2px;
+    padding: 0;
+}
+
+th ul.dropdown-menu span[disabled=disabled] {
+    opacity: 0.5;
+}
+
+.thumbnail {
+    cursor: pointer;
+    margin-bottom: 30px;
+}
+
+    .thumbnail:hover {
+        border-color: #428BCA;
+    }
+
+    .thumbnail.selected,
+    .thumbnail.selected:hover {
+        border-color: #357EBD;
+    }
+
+ul.tree-node,
+ul.tree-node ul {
+    list-style: none;
+    margin: 0;
+    padding: 0 0 0 16px;
+}
+
+    ul.tree-node li {
+        padding: 3px 6px;
+    }
+
+        ul.tree-node li a {
+            color: #555;
+            cursor: pointer;
+            padding: 2px;
+        }
+
+        ul.tree-node li span.over > a {
+            background-color: #428bca;
+            color: white;
+        }
+
+        ul.tree-node li a.selected {
+            background-color: #bbb;
+        }
+
+        ul.tree-node li a:hover {
+            background-color: #ddd;
+            text-decoration: none;
+        }
+
+        ul.tree-node li a.selected:hover {
+            background-color: #bbb;
+        }
+
+tbody tr.selected td,
+tbody tr.selected td:hover {
+    background-color: #eee !important;
+}
+
+thead th span {
+    cursor: pointer;
+}
+
+h1.Added,
+span.Added {
+    color: #008800;
+    font-style: italic;
+    font-weight: bold;
+}
+
+h1.Modified,
+span.Modified {
+    color: #ff8800;
+    font-style: italic;
+    font-weight: bold;
+}
+
+h1.Deleted,
+span.Deleted {
+    color: #880000;
+    font-style: italic;
+    text-decoration: line-through;
+}
+
+h1.Detached {
+    color: #555;
+    opacity: 0.5;
+    text-decoration: line-through;
+}
+
+.icn-pre-indent {
+    background-position: 15px center;
+    background-repeat: no-repeat;
+    padding-left: 36px !important;
+}
+
+.icn-indent {
+    background-position: 0 center;
+    background-repeat: no-repeat;
+    padding-left: 21px !important;
+}
+
+.gridStyle {
+    border: 1px solid rgb(212, 212, 212);
+    height: 400px;
+    width: 800px;
+}
+
+.centered-message {
+    height: 50px;
+    left: 50%;
+    margin-left: -100px;
+    margin-top: -25px;
+    position: fixed;
+    text-align: center;
+    top: 50%;
+    width: 200px;
+    z-index: 101;
+}
+
+ul.pagination {
+    margin: auto;
+}
+
+span.navbar-text {
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.page-header h1 {
+    margin: 0;
+}
+
+nav ul li,
+ul.pagination li a,
+ul.nav-tabs li a {
+    cursor: pointer;
+}
+
+.norwegian {
+    background-image: url(icons/flag_norway.png);
+}
+
+.swedish {
+    background-image: url(icons/flag_sweden.png);
+}
+
+.english {
+    background-image: url(icons/flag_great_britain.png);
+}
+
+.project {
+    background-image: url(icons/folder_wrench.png);
+}
+
+.experience {
+    background-image: url(icons/star.png);
+}
+
+.customer {
+    background-image: url(icons/user_gray.png);
+}
+
+.file {
+    background-image: url(icons/attach.png);
+}
+
+.folder {
+    background-image: url(icons/folder.png);
+}
+
+.component {
+    background-image: url(icons/wrench_orange.png);
+}
+
+.series, .componentseries {
+    background-image: url(icons/wrench.png);
+}
+
+.vendor {
+    background-image: url(icons/eye.png);
+}
+
+.category {
+    background-image: url(icons/bricks.png);
+}
+
+.employee {
+    background-image: url(icons/user_suit.png);
+}
+
+.type {
+    background-image: url(icons/brick.png);
+}
+
+.maintenance {
+    background-image: url(icons/date.png);
+}
+
+.orderconfirmation {
+    background-image: url(icons/cart.png);
+}
+
+.bmp {
+    background-image: url(filetypes/bmp.png);
+}
+
+.gif {
+    background-image: url(filetypes/gif.png);
+}
+
+.jpg, .jpeg {
+    background-image: url(filetypes/jpg.png);
+}
+
+.dwg {
+    background-image: url(filetypes/dwg.png);
+}
+
+.pdf {
+    background-image: url(filetypes/pdf.png);
+}
+
+.png {
+    background-image: url(filetypes/png.png);
+}
+
+.xls {
+    background-image: url(filetypes/xls.png);
+}
+
+.xlsx {
+    background-image: url(filetypes/xlsx.png);
+}
+
+.zip {
+    background-image: url(filetypes/zip.png);
+}
+
+.safety {
+    background-image: url(icons/error.png);
+}
+
+.user {
+    background-image: url(icons/user.png);
+}
+
+.role {
+    background-image: url(icons/award_star_gold_1.png);
+}
+
+.permission {
+    background-image: url(icons/key.png);
+}
+
+.documentation {
+    background-image: url(icons/page_white_stack.png);
+}
+
+.chapter {
+    background-image: url(icons/page_white.png);
+}
+
+.generatedchapter {
+    background-image: url(icons/page_white_gear.png);
+}

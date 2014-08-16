@@ -1,0 +1,135 @@
+﻿<div class="e-table">
+    <div class="e-table-header">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th style="width: 20px">
+                        <input type="checkbox" ng-disabled="items.length == 0" ng-checked="items.length > 0 && items.length == selectedItemCount" ng-click="selectAll($event)" />
+                    </th>
+                    <th sly-repeat="column in columns" ng-if="column.visible" ng-style="{ 'width': column.calculatedWidth + 'px' }" ng-click="orderByProperty(column.property, $event)">
+                        {{::column.name}} <i class="fa fa-fw" ng-class="{ 'fa-angle-down' : column.sort == -1, 'fa-angle-up' : column.sort == 1 }"></i>
+                    </th>
+                    <th ng-if="::!readOnly" style="width: 60px"></th>
+                    <th style="width: 12px"></th>
+                </tr>
+                <tr ng-if="showFilters">
+                    <th></th>
+                    <th sly-repeat="column in columns" ng-if="column.visible">
+                        <div ng-switch on="::column.type">
+                            <div ng-switch-when="text" class="input-icon right">
+                                <i class="fa fa-filter" ng-click="column.filterCollection.setSingleFilter(column.filter); requeryWithFilters()"></i>
+                                <input type="text" class="form-control" ng-enter="column.filterCollection.setSingleFilter(column.filter); requeryWithFilters();" ng-model="column.filter" ng-value="column.filterCollection.getSingleFilter()" ng-trim="true" autofocus />
+                            </div>
+                            <select ng-switch-when="enumeration" class="form-control" ng-change="column.filterCollection.setSingleFilter(column.filter); requeryWithFilters()" ng-model="column.filter" ng-options="f for f in ::column.enums" autofocus></select>
+                            <input ng-switch-when="bool" class="form-control" ng-model="column.filter" />
+                        </div>
+                    </th>
+                    <th ng-if="::!readOnly"></th>
+                    <th></th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="e-table-content">
+        <table class="table table-hover">
+            <tbody>
+                <tr class="table-row" style="border-collapse: separate" draggable ng-click="selectItem(item, $event)" ng-class="{ 'selected' : item.isSelected }" sly-repeat="item in items">
+                    <td style="width: 20px">
+                        <input type="checkbox" ng-model="item.isSelected" />
+                    </td>
+                    <td sly-repeat="column in columns" ng-if="column.visible" class="cell" ng-style="{ 'width': column.calculatedWidth + 'px' }" ng-class="{{::rowClass}}">
+
+                        <div ng-if="!editCell(item, column)" ng-switch on="::column.type">
+                            <div ng-switch-when="bool"><i class="fa" ng-class="{ 'fa-check' : item[column.property] }"></i></div>
+                            <div ng-switch-default dynamic="item._columns[column.name].template"></div>
+                        </div>
+
+                        <div ng-if="editCell(item, column)" ng-switch on="::column.type">
+                            <select ng-switch-when="enumeration" class="form-control input-sm" ng-options="r.Name as r.Name for r in ::item.tempOptions[column.property] | orderBy:'Name'" ng-model="item.tempValues[column.property]"></select>
+                            <textarea ng-switch-when="textarea" class="form-control input-sm" rows="10" ng-model="item.tempValues[column.property]"></textarea>
+                            <input ng-switch-when="relation" type="text" ng-model="item.tempTypeahead[column.property]" typeahead="item.Name for item in getAsync(column.resource, $viewValue)" typeahead-on-select="item.tempValues[column.property] = $item" class="form-control input-sm" typeahead-wait-ms="250" />
+                            <input ng-switch-when="bool" type="checkbox" ng-model="item.tempValues[column.property]" />
+                            <input ng-switch-when="datetime" type="text" datetimez class="form-control input-sm" ng-model="item.tempValues[column.property]" />
+                            <input ng-switch-default class="form-control input-sm" type="text" ng-model="item.tempValues[column.property]" />
+                        </div>
+
+                    </td>
+
+                    <td ng-if="::!readOnly" style="width: 60px">
+                        <div ng-if="!editRow">
+                            <button class="btn btn-xs blue" ng-click="startEditRow(item)"><i class="fa fa-fw fa-pencil"></i></button>
+                            <button ng-if="!item.entityAspect.entityState.isUnchanged()" class="btn btn-xs"
+                                    ng-class="{ 'yellow' : item.entityAspect.entityState.isModified(),
+                                                    'red' : item.entityAspect.entityState.isDeleted(),
+                                                    'green' : item.entityAspect.entityState.isAdded() }"
+                                    ng-click="item.entityAspect.rejectChanges()">
+                                <i class="fa fa-fw"
+                                   ng-class="{ 'fa-exclamation' : item.entityAspect.entityState.isModified(),
+                                                    'fa-trash-o' : item.entityAspect.entityState.isDeleted(),
+                                                    'fa-asterisk' : item.entityAspect.entityState.isAdded() }"></i>
+                            </button>
+                        </div>
+                        <div ng-if="editRow == item">
+                            <button class="btn btn-xs green" ng-click="updateRow(item)"><i class="fa fa-fw fa-check"></i></button>
+                            <button class="btn btn-xs red" ng-click="cancelEditRow()"><i class="fa fa-fw fa-times"></i></button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="column-dialog" class="modal fade">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Innstillinger</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Synlinge kolonner</div>
+                        <ul class="list-group" ng-model="columns" ui-sortable="{ axis: 'y', containment: 'parent' }">
+                            <li class="list-group-item" ng-repeat="column in columns" ng-click="toggleColumn(column)">
+                                {{::column.name}}<span ng-show="column.visible" class="pull-right fa fa-fw fa-check"></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-sm" ng-click="resetColumns()">Standard</button>
+                    <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Lukk</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-if="::showStatusbar" class="form statusbar margin-top-10 row">
+        <div class="col-md-6">
+            <form class="form-horizontal" role="form">
+                <div class="form-body">
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" ng-if="count > 0">
+                            Rad {{paging.showStart}}-{{paging.showEnd}} av totalt {{count}}
+                        </label>
+                        <label class="col-md-3 control-label" ng-if="count == 0">Ingen rader</label>
+                        <div class="col-md-2">
+                            <select class="form-control" ng-model="queryParams.take">
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!--<span ng-if="selectedItemCount > 0" class="navbar-text">Antall valgte rader: {{selectedItemCount}}</span>-->
+        </div>
+        <div class="col-md-6 form-body" ng-hide="hasNewItems()">
+            <pagination class="pull-right pagination" total-items="count" previous-text="Forrige" next-text="Neste" items-per-page="queryParams.take" max-size="4" ng-model="paging.current" ng-change="gotoPage(paging.current)"></pagination>
+        </div>
+    </div>
+
+    <div ng-transclude ng-hide="true"></div>
+</div>

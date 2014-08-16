@@ -1,0 +1,48 @@
+﻿<datagrid>
+
+    <column width="7" order="0" name="Project" property="ProjectNumber" type="string">
+        <span class="icn-indent project">
+            <a ng-href="/project/{{item.Id}}">{{item.ProjectNumber}}</a>
+        </span>
+        <span editable-text="item.ProjectNumber" e-required></span>
+    </column>
+
+    <column width="35" order="1" name="Description" property="Name" type="string">
+        <span editable-textarea="item.Name">{{item.Name}}</span> 
+    </column>
+
+    <column width="20" order="2" name="Customer" property="Customer.Name" type="string" link="customer" linkProperty="Customer">
+        <span class="icn-indent customer">
+            <a ng-href="/customer/{{item.CustomerId}}">{{item.Customer.Name}}</a>
+        </span>
+    </column>
+
+    <column width="8" order="3" name="Created" property="Created" type="string">
+        {{item.Created | amDateFormat: 'DD.MM.YYYY HH:mm'}}
+    </column>
+
+    <column width="8" order="4" name="Edited" property="Edited" type="string">
+        <span ng-show="item.Editor != null">
+            {{item.Edited | amDateFormat: 'DD.MM.YYYY HH:mm'}}
+        </span>
+    </column>
+
+    <column width="7" order="5" name="Creator" property="Creator.Name" type="string">
+        <span class="icn-indent user">
+            <a ng-href="/user/{{item.CreatorId}}">{{item.Creator.Name}}</a>
+        </span>
+    </column>
+
+    <column width="7" order="6" name="Editor" property="Editor.Name" type="string">
+        <span ng-show="item.Editor != null" class="icn-indent user">
+            <a ng-href="/user/{{item.EditorId}}">{{item.Editor.Name}}</a>
+        </span>
+    </column>
+
+    <column width="8" order="7" name="Status" property="Status" type="enumeration" enumtype="ProjectStatus">
+        <span editable-select="item.Status" ng-controller="SelectController" onshow="loadEnum('ProjectStatus')" e-ng-options="r.Name as r.Name for r in projectstatus | orderBy:'Name'">
+            {{item.Status || 'not set'}}
+        </span>
+    </column>
+    
+</datagrid>

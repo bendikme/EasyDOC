@@ -1,0 +1,192 @@
+﻿
+<div>
+    <div id="grid" class="col-sm-3 gantt-grid" style="padding: 0;">
+        <toolbar></toolbar>
+        <datagrid config="tasks" items="items"></datagrid>
+    </div>
+    <div class="col-sm-9" style="padding: 0">
+        <div id="gantt-header" style="overflow: hidden; height: 48px;"></div>
+        <div id="gantt-chart" style="overflow-x:auto; overflow-y: auto;">
+            <div id="gantt-container"></div>
+        </div>
+    </div>
+
+    <div id="link-dialog" class="modal fade">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Task dependency properties</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label for="from" class="col-sm-2 control-label">From</label>
+                            <div class="col-sm-10">
+                                <span class="help-block">{{selectedItem.To.Name}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="to" class="col-sm-2 control-label">To</label>
+                            <div class="col-sm-10">
+                                <span class="help-block">{{selectedItem.To.Name}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="link-type" class="col-sm-2 control-label">Type</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" id="link-type" ng-model="selectedItemCopy.Type" ng-options="t.Id as t.Name for t in linkTypes"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="lag" class="col-sm-2 control-label">Lag</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="lag" placeholder="0d" pattern="(-?\d+(?:,\d+)?)\s*(mo|w|d|h|m)" ng-model="selectedItemCopy.Lag" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" ng-click="rescheduleTasks(true)">OK</button>
+                    <button class="btn btn-danger" ng-click="rescheduleTasks(false)">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        label {
+            text-align: left !important;
+        }
+    </style>
+
+    <div id="task-dialog" class="modal fade">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Task properties</h4>
+                </div>
+                <div class="modal-body">
+
+                    <ul class="nav nav-tabs" id="tabContent">
+                        <li class="active"><a href="#details" data-toggle="tab">Details</a></li>
+                        <li><a href="#resources" data-toggle="tab">Resources</a></li>
+                        <li><a href="#checklist" data-toggle="tab">Checklist</a></li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="details">
+                            <form class="form-horizontal" role="form">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="name" class="col-sm-2 control-label">Name</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="name" placeholder="Name" ng-model="selectedItemCopy.Name" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group" ng-if="!selectedItemCopy.summaryTask">
+                                            <label for="progress" class="col-sm-2 control-label">Progress</label>
+                                            <div class="col-sm-3">
+                                                <input type="number" min="0" max="100" step="1" class="form-control" id="progress" ng-model="selectedItemCopy.PercentComplete" />
+                                            </div>
+                                            <div class="col-sm-7">
+                                                <div class="btn-group btn-group-xs">
+                                                    <button type="button" class="btn btn-default" ng-click="selectedItemCopy.PercentComplete = 0">0%</button>
+                                                    <button type="button" class="btn btn-default" ng-click="selectedItemCopy.PercentComplete = 25">25%</button>
+                                                    <button type="button" class="btn btn-default" ng-click="selectedItemCopy.PercentComplete = 50">50%</button>
+                                                    <button type="button" class="btn btn-default" ng-click="selectedItemCopy.PercentComplete = 75">75%</button>
+                                                    <button type="button" class="btn btn-default" ng-click="selectedItemCopy.PercentComplete = 100">100%</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" ng-if="!selectedItemCopy.summaryTask">
+                                            <label for="progress" class="col-sm-2 control-label">Start</label>
+                                            <div class="col-sm-10">
+                                                <input type="date" class="form-control" id="progress" ng-model="selectedItemCopy.StartDate" ng-disabled="selectedItemCopy.IsAutoScheduled" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group" ng-if="!selectedItemCopy.summaryTask">
+                                            <label for="constraint-type" class="col-sm-4 control-label">Constraint type</label>
+                                            <div class="col-sm-8">
+                                                <select class="form-control" id="constraint-type" ng-model="selectedItemCopy.ConstraintType" ng-options="t.Id as t.Name for t in constraintTypes" ng-disabled="!selectedItemCopy.IsAutoScheduled"></select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" ng-if="!selectedItemCopy.summaryTask">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox" ng-model="selectedItemCopy.IsAutoScheduled"> Auto Scheduled
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox" ng-model="selectedItemCopy.IsInactive"> Inactive
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox" ng-model="selectedItemCopy.IsMilestone"> Milestone
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group" ng-if="!selectedItemCopy.summaryTask">
+                                            <label for="duration" class="col-sm-2 control-label">Duration</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="duration" placeholder="1d" pattern="(-?\d+(?:,\d+)?)\s*(mo|w|d|h|m)" ng-model="selectedItemCopy.Duration" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group" ng-if="!selectedItemCopy.summaryTask">
+                                            <label for="priority" class="col-sm-2 control-label">Priority</label>
+                                            <div class="col-sm-10">
+                                                <input type="number" min="0" max="100" step="1" class="form-control" id="priority" ng-model="selectedItemCopy.Priority" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group" ng-if="!selectedItemCopy.summaryTask">
+                                            <label for="progress" class="col-sm-2 control-label">Finish</label>
+                                            <div class="col-sm-10">
+                                                <input type="date" class="form-control" id="progress" ng-model="selectedItemCopy.EndDate" ng-disabled="selectedItemCopy.IsAutoScheduled" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group" ng-if="!selectedItemCopy.summaryTask">
+                                            <label for="constraint-date" class="col-sm-4 control-label">Constraint date</label>
+                                            <div class="col-sm-8">
+                                                <input type="date" class="form-control" id="constraint-date" ng-model="selectedItemCopy.ConstraintDate" ng-disabled="!selectedItemCopy.IsAutoScheduled" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="tab-pane" id="resources">
+                            content 0
+                        </div>
+                        <div class="tab-pane" id="checklist">
+                            content 1
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" ng-click="rescheduleTasks(true)">OK</button>
+                    <button class="btn btn-danger" ng-click="rescheduleTasks(false)">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="statusbar" class="statusbar">
+        <div class="pull-left">
+        </div>
+        <form class="form-horizontal" role="form">
+            <div class="pull-right">
+                <input type="range" min="5" max="160" step="0.1" ng-model="zoom" />
+            </div>
+        </form>
+    </div>
+</div>

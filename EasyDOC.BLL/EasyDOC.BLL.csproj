@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{771BF1B0-CC81-4F9A-ADE0-A8CEEF298F5E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EasyDOC.BLL</RootNamespace>
+    <AssemblyName>EasyDOC.BLL</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.6\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Mvc, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.1.1\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Extensions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AbstractChapterService.cs" />
+    <Compile Include="Services\AbstractComponentService.cs" />
+    <Compile Include="Services\CatalogService.cs" />
+    <Compile Include="Services\CategoryService.cs" />
+    <Compile Include="Services\ComponentService.cs" />
+    <Compile Include="Services\ISafetyService.cs" />
+    <Compile Include="Services\OrderConfirmationService.cs" />
+    <Compile Include="Services\SafetyService.cs" />
+    <Compile Include="Services\CustomerService.cs" />
+    <Compile Include="Services\DocumentationService.cs" />
+    <Compile Include="Services\FileService.cs" />
+    <Compile Include="Services\GenericService.cs" />
+    <Compile Include="Services\IChapterService.cs" />
+    <Compile Include="Services\IComponentService.cs" />
+    <Compile Include="Services\ICustomerService.cs" />
+    <Compile Include="Services\IDocumentationService.cs" />
+    <Compile Include="Services\IGenericService.cs" />
+    <Compile Include="Services\IMaintenanceService.cs" />
+    <Compile Include="Services\IProjectService.cs" />
+    <Compile Include="Services\IUserService.cs" />
+    <Compile Include="Services\IValidationDictionary.cs" />
+    <Compile Include="Services\MaintenanceService.cs" />
+    <Compile Include="Services\ModelStateWrapper.cs" />
+    <Compile Include="Services\ProjectService.cs" />
+    <Compile Include="Services\SeriesService.cs" />
+    <Compile Include="Services\UserService.cs" />
+    <Compile Include="Services\VendorService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EasyDOC.DAL\EasyDOC.DAL.csproj">
+      <Project>{32bcd1fd-1dad-4146-bd0b-0a2678208fe8}</Project>
+      <Name>EasyDOC.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EasyDOC.Models\EasyDOC.Models.csproj">
+      <Project>{b6545534-0078-47ff-9a5c-56ddfff0acb1}</Project>
+      <Name>EasyDOC.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EasyDOC.Pdf.Interface\EasyDOC.Pdf.Interface.csproj">
+      <Project>{07dc95d5-2e6c-4cd8-948b-c2620469934f}</Project>
+      <Name>EasyDOC.Pdf.Interface</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

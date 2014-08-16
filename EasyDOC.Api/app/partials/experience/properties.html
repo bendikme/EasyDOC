@@ -1,0 +1,47 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        <table class="property-grid">
+            <tr>
+                <td><label>Content</label></td>
+                <td>
+                    <div editable-textarea="item.Content">{{item.Content || 'not set'}}</div>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Tags</label></td>
+                <td>
+                    <tags-input ng-model="tags" on-tag-added="tagsChanged()" on-tag-removed="tagsChanged()" min-length="2" add-on-space="true"></tags-input>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Project</label></td>
+                <td>
+                    <span class="icn-indent project">
+                        <a ng-href="/project/{{item.ProjectId}}">{{item.Project.ProjectNumber}}</a>
+                    </span>
+                    <button ng-click="select('project','Project')" class="editable-link">
+                        <i class="fa fa-link">&nbsp;</i>
+                    </button>
+                    <button ng-click="item.ProjectId = null" class="editable-link">
+                        <i class="fa fa-unlink">&nbsp;</i>
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Component</label></td>
+                <td>
+
+                    <span class="icn-indent component">
+                        <a ng-href="/component/{{item.ComponentId}}">{{item.Component && (item.Component.Name + '-' + item.Component.Description)}}</a>
+                    </span>
+                    <button ng-click="select('component','Component')" class="editable-link">
+                        <i class="fa fa-link">&nbsp;</i>
+                    </button>
+                    <button ng-click="item.ComponentId = null" class="editable-link">
+                        <i class="fa fa-unlink">&nbsp;</i>
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,158 @@
+namespace EasyDOC.Models.Migrations
+{
+    using System;
+    using System.Data.Entity.Migrations;
+    
+    public partial class MaxLengths : DbMigration
+    {
+        public override void Up()
+        {
+            AlterColumn("dbo.Category", "Name", c => c.String(nullable: false, maxLength: 50));
+            AlterColumn("dbo.Category", "NameSe", c => c.String(maxLength: 50));
+            AlterColumn("dbo.User", "Name", c => c.String(nullable: false, maxLength: 50));
+            AlterColumn("dbo.User", "Username", c => c.String(nullable: false, maxLength: 20));
+            AlterColumn("dbo.User", "Email", c => c.String(nullable: false, maxLength: 50));
+            AlterColumn("dbo.Permission", "Name", c => c.String(nullable: false, maxLength: 100));
+            AlterColumn("dbo.Permission", "Info", c => c.String(maxLength: 100));
+            AlterColumn("dbo.Experience", "Name", c => c.String(nullable: false, maxLength: 100));
+            AlterColumn("dbo.Experience", "Tags", c => c.String(maxLength: 500));
+            AlterColumn("dbo.Project", "ProjectNumber", c => c.String(nullable: false, maxLength: 50));
+            AlterColumn("dbo.Project", "Name", c => c.String(nullable: false, maxLength: 200));
+            AlterColumn("dbo.DocumentationChapter", "ChapterNumber", c => c.String(nullable: false, maxLength: 10));
+            AlterColumn("dbo.Documentation", "Name", c => c.String(nullable: false, maxLength: 100));
+            AlterColumn("dbo.Documentation", "NameSe", c => c.String(maxLength: 100));
+            AlterColumn("dbo.Documentation", "Description", c => c.String(maxLength: 500));
+            AlterColumn("dbo.File", "Type", c => c.String(nullable: false, maxLength: 10));
+            AlterColumn("dbo.File", "Link", c => c.String(maxLength: 100));
+            AlterColumn("dbo.File", "Description", c => c.String(maxLength: 500));
+            AlterColumn("dbo.Vendor", "Name", c => c.String(nullable: false, maxLength: 50));
+            AlterColumn("dbo.Vendor", "ShortName", c => c.String(maxLength: 5));
+            AlterColumn("dbo.Vendor", "Link", c => c.String(maxLength: 50));
+            AlterColumn("dbo.Vendor", "Email", c => c.String(maxLength: 50));
+            AlterColumn("dbo.Vendor", "PostalAddress", c => c.String(maxLength: 200));
+            AlterColumn("dbo.Vendor", "VisitingAddress", c => c.String(maxLength: 200));
+            AlterColumn("dbo.Vendor", "PhoneNumber", c => c.String(maxLength: 20));
+            AlterColumn("dbo.Vendor", "FaxNumber", c => c.String(maxLength: 20));
+            AlterColumn("dbo.Vendor", "AccountNumber", c => c.String(maxLength: 20));
+            AlterColumn("dbo.Vendor", "OrganizationNumber", c => c.String(maxLength: 20));
+            AlterColumn("dbo.Maintenance", "Name", c => c.String(nullable: false, maxLength: 200));
+            AlterColumn("dbo.Maintenance", "NameSe", c => c.String(maxLength: 200));
+            AlterColumn("dbo.Maintenance", "Description", c => c.String(maxLength: 500));
+            AlterColumn("dbo.Maintenance", "DescriptionSe", c => c.String(maxLength: 500));
+            AlterColumn("dbo.ProjectMaintenance", "Remarks", c => c.String(maxLength: 1000));
+            AlterColumn("dbo.Folder", "Name", c => c.String(nullable: false, maxLength: 50));
+            AlterColumn("dbo.Folder", "Description", c => c.String(maxLength: 500));
+            AlterColumn("dbo.ProjectFile", "Name", c => c.String(maxLength: 200));
+            AlterColumn("dbo.AbstractChapter", "Name", c => c.String(nullable: false, maxLength: 100));
+            AlterColumn("dbo.AbstractChapter", "NameSe", c => c.String(maxLength: 100));
+            AlterColumn("dbo.AbstractChapter", "Description", c => c.String(maxLength: 500));
+            AlterColumn("dbo.AbstractChapter", "DescriptionSe", c => c.String(maxLength: 500));
+            AlterColumn("dbo.ProjectComponent", "Info", c => c.String(maxLength: 1000));
+            AlterColumn("dbo.Customer", "Name", c => c.String(nullable: false, maxLength: 100));
+            AlterColumn("dbo.Employee", "Name", c => c.String(nullable: false, maxLength: 100));
+            AlterColumn("dbo.Employee", "Title", c => c.String(maxLength: 100));
+            AlterColumn("dbo.Task", "Name", c => c.String(nullable: false, maxLength: 100));
+            AlterColumn("dbo.Task", "Description", c => c.String(maxLength: 500));
+            AlterColumn("dbo.TaskType", "Name", c => c.String(nullable: false, maxLength: 100));
+            AlterColumn("dbo.ProjectSafety", "Location", c => c.String(maxLength: 1000));
+            AlterColumn("dbo.Safety", "Name", c => c.String(nullable: false, maxLength: 100));
+            AlterColumn("dbo.Safety", "NameSe", c => c.String(maxLength: 100));
+            AlterColumn("dbo.Safety", "Description", c => c.String(maxLength: 500));
+            AlterColumn("dbo.Safety", "DescriptionSe", c => c.String(maxLength: 500));
+            AlterColumn("dbo.ServiceLog", "Name", c => c.String(maxLength: 100));
+            AlterColumn("dbo.AbstractComponent", "Name", c => c.String(nullable: false, maxLength: 100));
+            AlterColumn("dbo.AbstractComponent", "Description", c => c.String(maxLength: 500));
+            AlterColumn("dbo.AbstractComponent", "DescriptionSe", c => c.String(maxLength: 500));
+            AlterColumn("dbo.OrderConfirmationItem", "OrderSpecificDescription", c => c.String(maxLength: 1000));
+            AlterColumn("dbo.OrderConfirmationItem", "Name", c => c.String(maxLength: 1000));
+            AlterColumn("dbo.OrderConfirmation", "OrderNumber", c => c.String(maxLength: 50));
+            AlterColumn("dbo.OrderConfirmation", "Currency", c => c.String(maxLength: 25));
+            AlterColumn("dbo.OrderConfirmation", "VendorReference", c => c.String(maxLength: 50));
+            AlterColumn("dbo.OrderConfirmation", "CustomerNumber", c => c.String(maxLength: 50));
+            AlterColumn("dbo.OrderConfirmation", "CustomerOrderNumber", c => c.String(maxLength: 50));
+            AlterColumn("dbo.OrderConfirmation", "Tag", c => c.String(maxLength: 100));
+            AlterColumn("dbo.OrderConfirmation", "InvoiceAddress", c => c.String(maxLength: 200));
+            AlterColumn("dbo.OrderConfirmation", "DeliveryAddress", c => c.String(maxLength: 200));
+            AlterColumn("dbo.OrderConfirmation", "DeliveryMethod", c => c.String(maxLength: 200));
+            AlterColumn("dbo.OrderConfirmation", "DeliveryConditions", c => c.String(maxLength: 200));
+            AlterColumn("dbo.OrderConfirmation", "PaymentMethod", c => c.String(maxLength: 200));
+            AlterColumn("dbo.OrderConfirmation", "PaymentConditions", c => c.String(maxLength: 200));
+            AlterColumn("dbo.OrderConfirmation", "Name", c => c.String(nullable: false, maxLength: 200));
+        }
+        
+        public override void Down()
+        {
+            AlterColumn("dbo.OrderConfirmation", "Name", c => c.String(nullable: false));
+            AlterColumn("dbo.OrderConfirmation", "PaymentConditions", c => c.String());
+            AlterColumn("dbo.OrderConfirmation", "PaymentMethod", c => c.String());
+            AlterColumn("dbo.OrderConfirmation", "DeliveryConditions", c => c.String());
+            AlterColumn("dbo.OrderConfirmation", "DeliveryMethod", c => c.String());
+            AlterColumn("dbo.OrderConfirmation", "DeliveryAddress", c => c.String());
+            AlterColumn("dbo.OrderConfirmation", "InvoiceAddress", c => c.String());
+            AlterColumn("dbo.OrderConfirmation", "Tag", c => c.String());
+            AlterColumn("dbo.OrderConfirmation", "CustomerOrderNumber", c => c.String());
+            AlterColumn("dbo.OrderConfirmation", "CustomerNumber", c => c.String());
+            AlterColumn("dbo.OrderConfirmation", "VendorReference", c => c.String());
+            AlterColumn("dbo.OrderConfirmation", "Currency", c => c.String());
+            AlterColumn("dbo.OrderConfirmation", "OrderNumber", c => c.String());
+            AlterColumn("dbo.OrderConfirmationItem", "Name", c => c.String());
+            AlterColumn("dbo.OrderConfirmationItem", "OrderSpecificDescription", c => c.String());
+            AlterColumn("dbo.AbstractComponent", "DescriptionSe", c => c.String());
+            AlterColumn("dbo.AbstractComponent", "Description", c => c.String());
+            AlterColumn("dbo.AbstractComponent", "Name", c => c.String(nullable: false));
+            AlterColumn("dbo.ServiceLog", "Name", c => c.String());
+            AlterColumn("dbo.Safety", "DescriptionSe", c => c.String());
+            AlterColumn("dbo.Safety", "Description", c => c.String());
+            AlterColumn("dbo.Safety", "NameSe", c => c.String());
+            AlterColumn("dbo.Safety", "Name", c => c.String(nullable: false));
+            AlterColumn("dbo.ProjectSafety", "Location", c => c.String());
+            AlterColumn("dbo.TaskType", "Name", c => c.String(nullable: false));
+            AlterColumn("dbo.Task", "Description", c => c.String());
+            AlterColumn("dbo.Task", "Name", c => c.String(nullable: false));
+            AlterColumn("dbo.Employee", "Title", c => c.String());
+            AlterColumn("dbo.Employee", "Name", c => c.String(nullable: false));
+            AlterColumn("dbo.Customer", "Name", c => c.String(nullable: false));
+            AlterColumn("dbo.ProjectComponent", "Info", c => c.String());
+            AlterColumn("dbo.AbstractChapter", "DescriptionSe", c => c.String());
+            AlterColumn("dbo.AbstractChapter", "Description", c => c.String());
+            AlterColumn("dbo.AbstractChapter", "NameSe", c => c.String());
+            AlterColumn("dbo.AbstractChapter", "Name", c => c.String(nullable: false));
+            AlterColumn("dbo.ProjectFile", "Name", c => c.String());
+            AlterColumn("dbo.Folder", "Description", c => c.String(maxLength: 1000));
+            AlterColumn("dbo.Folder", "Name", c => c.String(nullable: false, maxLength: 100));
+            AlterColumn("dbo.ProjectMaintenance", "Remarks", c => c.String());
+            AlterColumn("dbo.Maintenance", "DescriptionSe", c => c.String());
+            AlterColumn("dbo.Maintenance", "Description", c => c.String());
+            AlterColumn("dbo.Maintenance", "NameSe", c => c.String());
+            AlterColumn("dbo.Maintenance", "Name", c => c.String(nullable: false));
+            AlterColumn("dbo.Vendor", "OrganizationNumber", c => c.String());
+            AlterColumn("dbo.Vendor", "AccountNumber", c => c.String());
+            AlterColumn("dbo.Vendor", "FaxNumber", c => c.String());
+            AlterColumn("dbo.Vendor", "PhoneNumber", c => c.String());
+            AlterColumn("dbo.Vendor", "VisitingAddress", c => c.String());
+            AlterColumn("dbo.Vendor", "PostalAddress", c => c.String());
+            AlterColumn("dbo.Vendor", "Email", c => c.String());
+            AlterColumn("dbo.Vendor", "Link", c => c.String());
+            AlterColumn("dbo.Vendor", "ShortName", c => c.String());
+            AlterColumn("dbo.Vendor", "Name", c => c.String(nullable: false));
+            AlterColumn("dbo.File", "Description", c => c.String(maxLength: 1000));
+            AlterColumn("dbo.File", "Link", c => c.String());
+            AlterColumn("dbo.File", "Type", c => c.String(nullable: false));
+            AlterColumn("dbo.Documentation", "Description", c => c.String());
+            AlterColumn("dbo.Documentation", "NameSe", c => c.String());
+            AlterColumn("dbo.Documentation", "Name", c => c.String(nullable: false));
+            AlterColumn("dbo.DocumentationChapter", "ChapterNumber", c => c.String(nullable: false));
+            AlterColumn("dbo.Project", "Name", c => c.String(nullable: false));
+            AlterColumn("dbo.Project", "ProjectNumber", c => c.String(nullable: false));
+            AlterColumn("dbo.Experience", "Tags", c => c.String());
+            AlterColumn("dbo.Experience", "Name", c => c.String(nullable: false));
+            AlterColumn("dbo.Permission", "Info", c => c.String());
+            AlterColumn("dbo.Permission", "Name", c => c.String(nullable: false));
+            AlterColumn("dbo.User", "Email", c => c.String(nullable: false));
+            AlterColumn("dbo.User", "Username", c => c.String(nullable: false));
+            AlterColumn("dbo.User", "Name", c => c.String(nullable: false));
+            AlterColumn("dbo.Category", "NameSe", c => c.String());
+            AlterColumn("dbo.Category", "Name", c => c.String(nullable: false));
+        }
+    }
+}

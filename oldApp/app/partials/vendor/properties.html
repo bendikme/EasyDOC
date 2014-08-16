@@ -1,0 +1,55 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        <table class="property-grid">
+            <tr>
+                <td>
+                    <label>Short Name</label></td>
+                <td editable-text="item.ShortName">{{item.ShortName}}</td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Internett Address</label></td>
+                <td editable-text="item.Link">{{item.Link}}</td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Email Address</label></td>
+                <td editable-text="item.Email">{{item.Email}}</td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Phone Number</label></td>
+                <td editable-text="item.PhoneNumber">{{item.PhoneNumber}}</td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Fax Number</label></td>
+                <td editable-text="item.FaxNumber">{{item.FaxNumber}}</td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Account Number</label></td>
+                <td editable-text="item.AccountNumber">{{item.AccountNumber}}</td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Organization Number</label></td>
+                <td editable-text="item.OrganizationNumber">{{item.OrganizationNumber}}</td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Postal Address</label></td>
+                <td editable-textarea="item.PostalAddress">
+                    <p ng-bind-html-unsafe="item.PostalAddress | newline"></p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Visting Address</label></td>
+                <td editable-textarea="item.VisitingAddress">
+                    <p ng-bind-html-unsafe="item.VisitingAddress | newline"></p>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

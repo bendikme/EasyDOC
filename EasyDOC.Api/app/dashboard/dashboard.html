@@ -1,0 +1,199 @@
+﻿<div class="row">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="dashboard-stat blue-madison">
+            <div class="visual">
+                <i class="fa fa-cubes"></i>
+            </div>
+            <div class="details">
+                <div class="number" ng-bind="activeProjectCount || 0"></div>
+                <div class="desc">
+                    Aktive prosjekter
+                </div>
+            </div>
+            <a class="more" href="/project">
+                Vis mer <i class="m-icon-swapright m-icon-white"></i>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="dashboard-stat green-haze">
+            <div class="visual">
+                <i class="fa fa-heart-o"></i>
+            </div>
+            <div class="details">
+                <div class="number" ng-bind="activeServiceOrderCount || 0"></div>
+                <div class="desc">
+                    Aktive serviceordrer
+                </div>
+            </div>
+            <a class="more" href="#">
+                Vis mer <i class="m-icon-swapright m-icon-white"></i>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="dashboard-stat purple-plum">
+            <div class="visual">
+                <i class="fa fa-tasks"></i>
+            </div>
+            <div class="details">
+                <div class="number" ng-bind="tasksOverdueThisWeek || 0"></div>
+                <div class="desc">
+                    Oppgaver som fullføres denne uken
+                </div>
+            </div>
+            <a class="more" href="/task/filter?Progress|<|100;EndDate|<|{{getDate()}}">
+                Vis mer <i class="m-icon-swapright m-icon-white"></i>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="dashboard-stat red-intense">
+            <div class="visual">
+                <i class="fa fa-warning"></i>
+            </div>
+            <div class="details">
+                <div class="number" ng-bind="tasksOverdue || 0"></div>
+                <div class="desc">
+                    Oppgaver som må fullføres nå
+                </div>
+            </div>
+            <a class="more" href="#">
+                Vis mer <i class="m-icon-swapright m-icon-white"></i>
+            </a>
+        </div>
+    </div>
+</div>
+<!-- END DASHBOARD STATS -->
+<div class="clearfix">
+</div>
+
+<div class="row">
+    <div class="col-md-6 col-sm-6">
+        <div class="portlet light tasks-widget">
+            <div class="portlet-title">
+                <div class="caption">
+                    <span class="caption-subject bold uppercase font-blue-madison">Mine oppgaver</span>
+                </div>
+                <div class="actions">
+                    <a href="#" ng-click="loadTasks()" class="btn btn-sm btn-circle btn-default">
+                        <i class="fa fa-save"></i> Lagre
+                    </a>
+                    <a href="#" ng-click="loadTasks()" class="btn btn-sm btn-circle btn-icon-only btn-default">
+                        <i class="fa fa-fw fa-repeat"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="task-content">
+                    <div class="scroller" style="height: 305px;" data-always-visible="1" data-rail-visible1="1">
+                        <!-- START TASK LIST -->
+                        <span ng-if="!employeeTasks || employeeTasks.length == 0">Du har ingen oppgaver.</span>
+                        <ul class="task-list">
+                            <li sly-repeat="relation in employeeTasks">
+                                <div class="task-title">
+                                    <div>
+                                        <h4>
+                                            {{::relation.Task.Name}} <small>(<a class="" href="/project/{{::relation.Task.ProjectId}}">{{::relation.Task.Project.ProjectNumber}}</a>)</small>
+                                            <span ng-if="getDate() > relation.Task.EndDate && relation.Task.PercentComplete < 100" class="label label-sm label-danger">
+                                                Må fullføres nå
+                                            </span>
+                                        </h4>
+                                        <div class="task-title-sp">
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-striped progress-bar-info" role="progressbar" aria-valuenow="{{relation.Task.PercentComplete}}" aria-valuemin="0" aria-valuemax="100" ng-style="{ 'width' : relation.Task.PercentComplete + '%' }">
+                                                    {{relation.Task.PercentComplete}}% fullført
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="task-config">
+                                    <div class="task-config-btn btn-group">
+                                        <a class="btn btn-xs default" href="#" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                            <i class="fa fa-cog"></i><i class="fa fa-angle-down"></i>
+                                        </a>
+                                        <ul class="dropdown-menu pull-right">
+                                            <li><a href="#" ng-click="relation.Task.PercentComplete = 100;"><i class="fa fa-check"></i> 100% fullført</a></li>
+                                            <li><a href="#" ng-click="relation.Task.PercentComplete = 75;"><i class="fa fa-check"></i> 75% fullført</a></li>
+                                            <li><a href="#" ng-click="relation.Task.PercentComplete = 50;"><i class="fa fa-check"></i> 50% fullført</a></li>
+                                            <li><a href="#" ng-click="relation.Task.PercentComplete = 25;"><i class="fa fa-check"></i> 25% fullført</a></li>
+                                            <li><a href="#" ng-click="relation.Task.PercentComplete = 0;"><i class="fa fa-check"></i> 0% fullført</a></li>
+                                            <li>
+                                                <a href="#">
+                                                    <i class="fa fa-pencil"></i> Rediger
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <!-- END START TASK LIST -->
+                    </div>
+                    <div class="scroller-footer">
+                        <div class="btn-arrow-link pull-right">
+                            <a href="/task">Vis alle oppgaver</a>
+                            <i class="icon-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-sm-6">
+        <div class="portlet light">
+            <div class="portlet-title">
+                <div class="caption font-green-sharp">
+                    <span class="caption-subject bold uppercase">Siste erfaringer</span>
+                </div>
+                <div class="actions">
+                    <a href="#" ng-click="createExperience()" class="btn btn-sm btn-circle btn-default">
+                        <i class="fa fa-file-o"></i> Ny
+                    </a>
+                    <a href="#" ng-click="loadExperiences()" class="btn btn-sm btn-circle btn-icon-only btn-default">
+                        <i class="fa fa-fw fa-repeat"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="task-content">
+                    <div class="scroller" style="height: 305px;" data-always-visible="1" data-rail-visible1="1">
+                        <!-- START TASK LIST -->
+                        <ul class="feeds">
+                            <li sly-repeat="experience in experiences">
+                                <div class="col1">
+                                    <div class="cont">
+                                        <div class="cont-col1">
+                                            <div class="label label-sm label-primary">
+                                                <i class="fa fa-info"></i>
+                                            </div>
+                                        </div>
+                                        <div class="cont-col2">
+                                            <div class="desc">
+                                                <a href="/experience/{{::experience.Id}}">{{::experience.Name}}</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col2">
+                                    <a href="/user/{{::experience.Creator.Id}}" class="label label-info">{{::experience.Creator.Name}}</a>
+                                </div>
+                            </li>
+                        </ul>
+                        <!-- END START TASK LIST -->
+                    </div>
+                </div>
+                <div class="scroller-footer">
+                    <div class="btn-arrow-link pull-right">
+                        <a href="/experience">Vis alle erfaringer</a>
+                        <i class="icon-arrow-right"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="clearfix">
+</div>

@@ -1,0 +1,22 @@
+﻿<span class="dropdown">
+    <span ng-if="column.type"
+        ng-style=" { 'opacity': (column.filters.length == 0 ? '0.2' : '1') }"
+        data-toggle="tooltip"
+        title="Filter"
+        class="dropdown-toggle fa fa-filter"></span>
+    <ul class="dropdown-menu" ng-enter="requeryWithFilters()">
+        <li class="dropdown-header">
+            <span ng-disabled="!canAddFilter(column.filters)" ng-click="addFilter(column)" class="fa fa-fw fa-plus-square" data-toggle="tooltip" title="Add filter"></span>
+            <span ng-disabled="column.filters.length == 0" ng-click="column.filters.pop()" class="fa fa-fw fa-minus-square" data-toggle="tooltip" title="Remove filter"></span>
+            <span ng-click="requeryWithFilters()" class="fa fa-fw fa-refresh" data-toggle="tooltip" title="Refresh content"></span>
+            <span ng-disabled="column.filters.length == 0" ng-click="requeryWithFilters(column.filters = [])" class="fa fa-fw fa-trash-o" data-toggle="tooltip" title="Remove all filters"></span>
+        </li>
+        <li ng-if="column.filters.length" class="divider"></li>
+        <li ng-repeat="filter in column.filters">
+            <select ng-if="!$first" class="form-control" ng-model="filter.bool" ng-options="f.value as f.name for f in booleanOperators"></select>
+            <select class="form-control" ng-model="filter.op" ng-options="f.id as f.name for f in queryOperators[column.type]"></select>
+            <input ng-if="column.type !== 'enumeration'" type="text" class="form-control" ng-model="filter.value" ng-value="filter.value" ng-trim="false" autofocus />
+            <select ng-if="column.type === 'enumeration'" class="form-control" ng-model="filter.value" ng-options="f for f in column.enums" autofocus></select>
+        </li>
+    </ul>
+</span>

@@ -1,0 +1,33 @@
+﻿<datagrid data-type="ComponentFiles" data-cache-key="project-files" data-expand="Vendor" data-show="20" data-sort="FileId">
+
+    <where property="ComponentId" condition="==" val="{{item.Id}}" />
+
+    <column width="40" order="0" name="Name" property="Name" type="string">
+        <span class="icn-indent file">
+            <a ng-href="/file/{{item.FileId}}">{{item.Name}}</a>
+        </span> 
+        <span editable-text="item.Name"></span>
+    </column>
+
+    <column width="10" order="1" name="Role" property="Role">
+        <span editable-select="item.Role" ng-controller="SelectController" onshow="loadEnum('FileRoles')" e-ng-options="r.Name as r.Name for r in fileroles">
+            {{item.Role}}
+        </span>
+    </column>
+
+    <column width="30" order="2" name="Vendor" property="Vendor.Name" type="string">
+        <span class="icn-indent vendor">
+            <a ng-href="/vendor/{{item.VendorId}}">{{item.Vendor.Name}}</a>
+            <span editable-select="item.VendorId" ng-controller="SelectController" onshow="load('Vendors')" e-ng-options="c.Id as c.Name for c in vendors"></span>
+        </span> 
+    </column>
+
+    <column width="10" order="3" name="Manual" property="IncludeInManual">
+        <input type="checkbox" ng-model="item.IncludeInManual"/>
+    </column>
+
+    <column width="10" order="4" name="Printed" property="IncludedPrintedVersion">
+        <input type="checkbox" ng-model="item.IncludedPrintedVersion"/>
+    </column>
+    
+</datagrid>

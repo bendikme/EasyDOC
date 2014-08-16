@@ -1,0 +1,22 @@
+﻿<datagrid>
+    
+    <column width="100" order="0" name="Name" property="Name" type="string">
+        <span class="icn-indent safety">
+            <a ng-href="/safety/{{item.Id}}">{{item.Name}}</a>
+        </span>
+        <span editable-text="item.Name" e-required></span>
+    </column>
+
+    <!--<column width="30" order="1" name="Vendor" property="Vendor.Name" type="string">
+            <span ng-class="{ 'icn-indent vendor' : item.VendorId != null }">
+                <a ng-href="/vendor/{{item.VendorId}}">{{item.Vendor.Name}}</a>
+                <span 
+                    editable-select="item.VendorId" 
+                    ng-controller="SelectController" 
+                    onshow="load('Vendors')" 
+                    e-ng-options="v.Id as v.Name for v in vendors">
+                </span>
+            </span> 
+        </column>-->
+
+</datagrid>

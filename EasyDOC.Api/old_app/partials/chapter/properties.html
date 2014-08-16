@@ -1,0 +1,30 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        <table class="property-grid">
+            <tr>
+                <td><label>Description</label></td>
+                <td>
+                    <div editable-textarea="item.Description" e-required>
+                        {{item.Description || 'not set'}}
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td><label>Project</label></td>
+                <td>
+                    <span class="icn-indent project">
+                        <a ng-href="/series/{{item.ProjectId}}">{{item.Project ? (item.Project.ProjectNumber + ' ' + item.Project.Name) : 'not set'}}</a>
+                    </span>
+                    <button ng-click="select('project','Project')" class="editable-link">
+                        <i class="fa fa-link">&nbsp;</i>
+                    </button>
+                    <button ng-click="item.ProjectId = null" class="editable-link">
+                        <i class="fa fa-unlink">&nbsp;</i>
+                    </button>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

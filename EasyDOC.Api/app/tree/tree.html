@@ -1,0 +1,76 @@
+﻿<script type="text/ng-template" id="tree.html">
+
+    <div>
+        <i class="fa fa-fw"
+           ng-click="item.hasChildren && toggleChildren(item)"
+           ng-class="{
+            'fa-angle-right' : item.hasChildren && !item.isExpanded,
+            'fa-angle-down ' : item.isExpanded,
+            '' : !item.hasChildren
+        }">&nbsp;</i>
+
+        <span class="{{item.entityAspect.entityState.name}}"
+              ng-click="!item.editMode && selectItem(item)"
+              ng-dblclick="item.hasChildren && toggleChildren(item)"
+              ng-mouseover="item.showEditOption = true"
+              ng-mouseout="item.showEditOption = false"
+              droppable item="item">
+            <i class="fa "
+               ng-class="{
+                'fa-circle-o-notch fa-spin' : item.isLoading,
+                'fa-folder-o' : !item.isExpanded,
+                'fa-folder-open-o' : item.isExpanded
+           }">&nbsp;</i>
+            <a ng-if="!item.editMode" ng-class="{ 'selected' : item == selectedItem }">{{item.Name}}</a>
+            <input ng-if="item.editMode" type="text" required ng-model="temp.value" ng-blur="stopEditingItem(item, $event)" ng-enter="saveEditedItem(item, $event)" autofocus />
+            <i ng-if="item.editMode" class="editable-link fa fa-save" ng-click="saveEditedItem(item, $event)"></i>
+            <i class="editable-link fa fa-pencil" ng-show="!item.editMode && item.showEditOption" ng-mousedown="startEditingItem(item, $event)"></i>
+        </span>
+        <ul ng-if="item.isExpanded">
+            <li ng-repeat="item in getSubItems(item) | orderBy:'Name'" ng-include="'tree.html'" draggable item="item"></li>
+        </ul>
+    </div>
+</script>
+
+<div ng-controller="TreeViewController">
+
+    <toolbar></toolbar>
+    <table style="width: 100%;" id="tree-grid">
+        <tr class="table-row">
+            <td class="cell" style="vertical-align: top; width: 18%;">
+                <div style="width: 100%; height: 100%; overflow-y: auto; overflow-x: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                    <ul ng-if="!isLoadingRoot" class="tree-node" style="padding: 0;">
+                        <li ng-model="item" ng-include="'tree.html'"></li>
+                    </ul>
+                </div>
+            </td>
+            <td class="cell" style="vertical-align: top;">
+                <div class="pull-left">
+                    <div ng-hide="showUploadDetails">
+                        <datagrid items="empty"></datagrid>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <div class="modal fade" id="uploadFiles" tabindex="-1" role="dialog" aria-labelledby="uploadFiles" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Uploading file(s) to server ...</h4>
+                </div>
+                <div class="modal-body">
+                    <div sly-repeat="file in files">
+                        {{file.name}}
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-{{file.state}}" role="progressbar" aria-valuenow="{{file.progress}}" aria-valuemin="0" aria-valuemax="100" ng-style="{ 'width': file.progress + '%' }">{{file.progress + '%'}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

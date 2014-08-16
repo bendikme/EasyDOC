@@ -1,0 +1,54 @@
+﻿<div style="padding-bottom: 50px;" id="datagrid">
+    <div class="toolbar">
+        <button class="button" ng-repeat="b in toolbar" ng-if="b.visible" ng-disabled="b.disabled" ng-click="b.action()">
+            <i data-toggle="tooltip" title="{{b.tooltip}}" class="fa fa-fw {{b.icon}}"></i>
+        </button>
+        <span ng-if="isLoading"><i data-toggle="tooltip" title="Loading content ..." class="fa fa-spinner fa-spin"></i></span>
+        <span class="pull-right" ng-include="'/app/templates/columns.html'"></span>
+    </div>
+    <table class="table table-condensed table-bordered table-hover">
+        <thead>
+            <tr>
+                <th style="text-align: center; width: 1%;">
+                    <input type="checkbox" ng-disabled="items.length == 0" ng-checked="items.length > 0 && items.length == selectedItemCount" ng-click="selectAll($event)" data-toggle="tooltip" title="Select/deselect all" /></th>
+                <th ng-repeat="column in columns" ng-if="column.visible" ng-style="{ 'width': column.width + '%'}">
+                    <span ng-include="'/app/templates/filter.html'"></span>
+                    <span ng-click="orderByProperty(column.property, $event)">{{column.name}}
+                        <span class="glyphicon pull-right" ng-class="{ 'glyphicon-arrow-down' : column.sort == -1, 'glyphicon-arrow-up' : column.sort == 1 } "></span>
+                    </span>
+                </th>
+            </tr>
+        </thead>
+        <tbody ng-style="{ 'opacity' : isLoading ? 0.5 : 1.0 }">
+            <tr class="{{ item.entityAspect.entityState.name}}" draggable ng-class="{ 'selected' : item.isSelected, 'invalid' : item.entityAspect.getValidationErrors().length }" ng-click="selectItem(item, $event, $index)" ng-repeat="item in items">
+                <td style="text-align: center;">
+                    <input type="checkbox" ng-model="item.isSelected" />
+                </td>
+                <td ng-repeat="column in columns" ng-if="column.visible">
+                    <span dynamic="column.template"></span>
+                    <button ng-if="isEditable && !isLinkMode && column.link" ng-click="unlink(item,column)" class="editable-link pull-right">
+                        <i class="fa fa-unlink"></i>
+                    </button>
+                    <button ng-if="isEditable && !isLinkMode && column.link" ng-click="select(item,column)" class="editable-link pull-right">
+                        <i class="fa fa-link"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="statusbar">
+        <div class="pull-left">
+            <span ng-if="count > 1" class="navbar-text">
+                <span editable-number="queryParams.take" e-min="5" e-max="50">Showing {{paging.showStart}}-{{paging.showEnd}} of {{count}} item(s)
+                </span>
+            </span>
+            <span ng-if="count == 0" class="navbar-text">No items</span>
+            <span ng-if="selectedItemCount > 0" class="navbar-text">Selected item(s): {{selectedItemCount}}</span>
+        </div>
+        <div style="line-height: 0;" class="pull-right" ng-hide="hasNewItems()">
+            <pagination total-items="count" items-per-page="queryParams.take" class="pagination-sm" boundary-links="true" max-size="5" page="paging.current" on-select-page="gotoPage(page)"></pagination>
+        </div>
+    </div>
+    <div ng-transclude ng-hide="true"></div>
+</div>
+

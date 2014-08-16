@@ -1,0 +1,100 @@
+﻿<div class="page-header navbar navbar-fixed-top">
+    <!-- BEGIN HEADER INNER -->
+    <div class="page-header-inner">
+        <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+        <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
+        </a>
+    </div>
+</div>
+
+<div bindonce class="page-container" ng-controller="NavigationController">
+    <!-- BEGIN SIDEBAR -->
+    <div class="page-sidebar-wrapper">
+        <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+        <!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+        <div class="page-sidebar navbar-collapse collapse">
+            <!-- BEGIN SIDEBAR MENU -->
+            <ul class="page-sidebar-menu" data-auto-scroll="false" data-auto-speed="200">
+                <!-- DOC: To remove the sidebar toggler from the sidebar you just need to completely remove the below "sidebar-toggler-wrapper" LI element -->
+                <li class="sidebar-toggler-wrapper">
+                    <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+                    <div class="sidebar-toggler">
+                    </div>
+                    <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+                </li>
+                <!-- DOC: To remove the search box from the sidebar you just need to completely remove the below "sidebar-search-wrapper" LI element -->
+                <li class="sidebar-search-wrapper">
+                    <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
+                    <!-- DOC: Apply "sidebar-search-bordered" class the below search form to have bordered search box -->
+                    <!-- DOC: Apply "sidebar-search-bordered sidebar-search-solid" class the below search form to have bordered & solid search box -->
+                    <form class="sidebar-search">
+                        <a href="javascript:;" class="remove">
+                        </a>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Søk ...">
+                            <span class="input-group-btn">
+                                <input class="btn submit" type="button" type="button" value=" " />
+                            </span>
+                        </div>
+                    </form>
+                    <!-- END RESPONSIVE QUICK SEARCH FORM -->
+                </li>
+                <li ng-repeat="item in menu" ng-class="{ 'active' : item.selected, 'start' : $first, 'last' : $last }">
+                    <a href="{{item.url}}">
+                        <i class="fa fa-{{item.icon}}"></i>
+                        <span class="title">
+                            {{item.title}}
+                        </span>
+                        <span ng-if="item.subMenu" class="arrow ">
+                        </span>
+                        <span ng-class="{ 'selected' : item.selected }">
+                        </span>
+                    </a>
+                    <ul bo-if="item.subMenu" class="sub-menu">
+                        <li ng-repeat="item in item.subMenu">
+                            <a href="{{item.url}}">
+                                <i class="fa fa-{{item.icon}}"></i>
+                                <span class="title">
+                                    {{item.title}}
+                                </span>
+                                <span ng-class="{ 'selected' : item.selected }">
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li ng-if="recentItems && recentItems.length">
+                    <a href="javascript:;">
+                        <i class="fa fa-clock-o"></i>
+                        <span class="title">
+                            Nylig brukt
+                        </span>
+                        <span class="arrow ">
+                        </span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li ng-repeat="item in recentItems">
+                            <a ng-href="{{item.Url}}">
+                                <i class="fa fa-{{item.Type}}"></i>
+                                {{item.Name}}
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- END SIDEBAR MENU -->
+        </div>
+    </div>
+    <!-- END SIDEBAR -->
+    <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper">
+        <div class="page-content">
+            <!-- BEGIN PAGE TITLE & BREADCRUMB
+            <h3 class="page-title">
+                {{path.title}} <small>{{path.description}}</small>
+            </h3>
+            <!-- END PAGE TITLE & BREADCRUMB-->
+            <div ui-view="main"></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+﻿<datagrid>
+
+    <column width="20" order="0" name="Vendor" property="Component.Vendor.Name" type="string">
+        <span class="icn-indent vendor">
+            <a ng-href="/chapter/{{item.Component.VendorId}}">{{item.Component.Vendor.Name}}</a>
+        </span> 
+    </column>
+
+    <column width="40" order="1" name="Name" property="Component.Name" type="string">
+        <span class="icn-indent component">
+            <a ng-href="/component/{{item.ComponentId}}">{{item.Component.Name}}</a>
+        </span> 
+    </column>
+
+    <column width="40" order="2" name="Description" property="Component.Description" type="string">
+        {{item.Component.Description || 'not set'}}
+    </column>
+
+</datagrid>

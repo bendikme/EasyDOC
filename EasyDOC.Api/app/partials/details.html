@@ -1,0 +1,63 @@
+﻿<div class="row margin-bottom-20">
+    <div ng-if="loaded">
+        <div class="col-md-8 col-sm-12" ng-include="header"></div>
+        <div class="hidden-xs col-md-4 pull-right" ng-include="'/app/partials/history.html'"></div>
+    </div>
+    <div ng-if="!loaded" class="col-md-12">
+        Henter data ...
+    </div>
+</div>
+
+<tabset vertical="false" type="tabs" class="tabbable-custom">
+    <tab ng-repeat="tab in tabs" heading="{{tab.title}}" disabled="hasNewItems()" active="tab.active" select="selectTab(tab)">
+
+        <div ng-if="tab.template">
+            <div ng-include="tab.template"></div>
+        </div>
+
+        <div class="form" ng-if="tab.sections">
+            <form role="form">
+                <div class="form-body">
+                    <div ng-repeat="section in tab.sections">
+                        <h3 class="form-section">{{section.title}}</h3>
+                        <div class="row">
+                            <div class="col-md-6" ng-repeat="field in section.fields">
+                                <div class="form-group">
+                                    <label class="control-label">{{field.title}}</label>
+
+                                    <input ng-if="field.type == 'date'" type="text" ng-model="item[field.property]" class="form-control" placeholder="{{field.placeholder}}" z-validate datetimez />
+                                    <input ng-if="field.type == 'text'" type="text" ng-model="item[field.property]" class="form-control" placeholder="{{field.placeholder}}" z-validate />
+                                    <input ng-if="field.type == 'number'" type="number" ng-model="item[field.property]" class="form-control" placeholder="{{field.placeholder}}" z-validate />
+                                    <textarea ng-if="field.type == 'textarea'" ng-model="item[field.property]" class="form-control" placeholder="{{field.placeholder}}" z-validate></textarea>
+
+                                    <div ng-if="field.type == 'async'" class="input-group">
+                                        <input type="text" class="form-control" ng-class="{ 'spinner' : loading[field.resource] }" placeholder="{{field.placeholder || field.title}}" ng-model="async[field.model]" typeahead="item.Name for item in getAsync(field.resource, $viewValue)" typeahead-on-select="item[field.property] = $item" typeahead-wait-ms="250" z-validate />
+                                        <div class="input-group-btn right">
+                                            <button type="button" class="btn blue dropdown-toggle" data-toggle="dropdown"><i class="fa fa-gear"></i></button>
+                                            <ul class="dropdown-menu pull-right">
+                                                <li ng-if="item[field.property]"><a href="/{{field.url}}/{{item[field.id]}}">Naviger til oppføring</a></li>
+                                                <li ng-if="!item[field.property] && async[field.model].length > 0"><a href="#" ng-click=";">Opprett</a></li>
+                                                <li><a href="#" ng-click="item[field.property] = null; async[field.model] = null;">Nullstill</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div ng-if="hasChanges()" class="pull-right">
+                                <button ng-click="saveChanges()" class="btn blue"><i class="fa fa-save"></i> Lagre</button>
+                                <button ng-click="cancelChanges()" class="btn default">Avbryt</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </tab>
+</tabset>
+
+<div class="inside-tab" ui-view="sub"></div>

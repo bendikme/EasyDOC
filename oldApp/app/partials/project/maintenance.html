@@ -1,0 +1,17 @@
+﻿<datagrid>
+
+    <column width="50" order="0" name="Name" property="Maintenance.Name" type="string">
+        <span class="icn-indent maintenance">
+            <a ng-href="/maintenance/{{item.MaintenanceId}}">{{item.Maintenance.Name}}</a>
+        </span> 
+    </column>
+
+    <column width="40" order="1" name="Remarks" property="Remarks" type="string">
+        {{item.Remarks}}
+    </column>
+
+    <column width="10" order="2" name="Manual" property="IncludeInManual">
+        <input type="checkbox" ng-model="item.IncludeInManual"/>
+    </column>
+
+</datagrid>

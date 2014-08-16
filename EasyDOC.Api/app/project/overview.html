@@ -1,0 +1,9 @@
+﻿<div class="row">
+    <div class="col-md-6">
+        <div><h2>Velg et prosjekt</h2></div>
+        <div class="input-icon right">
+            <i ng-if="loadingProjects" class="fa fa-fw fa-refresh fa-spin"></i>
+            <input type="text" class="form-control" placeholder="Søk" ng-model="project" typeahead="formatProject(project) for project in getProjects($viewValue)" typeahead-on-select="selectProject($item)" typeahead-wait-ms="250">
+        </div>
+    </div>
+</div>

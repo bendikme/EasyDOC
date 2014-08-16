@@ -1,0 +1,57 @@
+﻿<datagrid>
+
+    <column width="25" order="0" name="Name" property="Name" type="string">
+        <span class="icn-indent maintenance">
+            <a ng-hide="editor1" ng-href="/maintenance/{{item.Maintenance.Id}}">{{item.Maintenance.Name}}</a>
+        </span>
+        <easy-edit model="item.Maintenance" property="Name" active="editor1" e-required></easy-edit>
+    </column>
+
+    <column width="30" order="1" name="Remarks" property="Remarks" type="string">
+        <span editable-text="item.Remarks">
+            {{item.Remarks}}
+        </span>
+    </column>
+
+    <column width="5" order="2" name="Day" property="IntervalDaily" type="bool">
+        <div ng-click="item.Maintenance.IntervalDaily = !item.Maintenance.IntervalDaily" style="text-align: center;">
+            <i ng-show="item.Maintenance.IntervalDaily" class="fa fa-check"></i><span>&nbsp;</span>
+        </div>
+    </column>
+    <column width="5" order="3" name="Week" property="IntervalWeekly" type="bool">
+        <div ng-click="item.Maintenance.IntervalWeekly = !item.Maintenance.IntervalWeekly" style="text-align: center;">
+            <i ng-show="item.Maintenance.IntervalWeekly" class="fa fa-check"></i><span>&nbsp;</span>
+        </div>
+    </column>
+    <column width="6" order="4" name="2. week" property="IntervalWeekly2" type="bool">
+        <div ng-click="item.Maintenance.IntervalWeekly2 = !item.Maintenance.IntervalWeekly2" style="text-align: center;">
+            <i ng-show="item.Maintenance.IntervalWeekly2" class="fa fa-check"></i><span>&nbsp;</span>
+        </div>
+    </column>
+    <column width="6" order="5" name="Month" property="IntervalMonthly" type="bool">
+        <div ng-click="item.Maintenance.IntervalMonthly = !item.Maintenance.IntervalMonthly" style="text-align: center;">
+            <i ng-show="item.Maintenance.IntervalMonthly" class="fa fa-check"></i><span>&nbsp;</span>
+        </div>
+    </column>
+    <column width="7" order="6" name="3. month" property="IntervalMonthly3" type="bool">
+        <div ng-click="item.Maintenance.IntervalMonthly3 = !item.Maintenance.IntervalMonthly3" style="text-align: center;">
+            <i ng-show="item.Maintenance.IntervalMonthly3" class="fa fa-check"></i><span>&nbsp;</span>
+        </div>
+    </column>
+    <column width="7" order="7" name="6. month" property="IntervalHalfYearly" type="bool">
+        <div ng-click="item.Maintenance.IntervalHalfYearly = !item.Maintenance.IntervalHalfYearly" style="text-align: center;">
+            <i ng-show="item.Maintenance.IntervalHalfYearly" class="fa fa-check"></i><span>&nbsp;</span>
+        </div>
+    </column>
+    <column width="5" order="8" name="Year" property="IntervalYearly" type="bool">
+        <div ng-click="item.Maintenance.IntervalYearly = !item.Maintenance.IntervalYearly" style="text-align: center;">
+            <i ng-show="item.Maintenance.IntervalYearly" class="fa fa-check"></i><span>&nbsp;</span>
+        </div>
+    </column>
+    <column width="6" order="9" name=">Year" property="IntervalRarely" type="bool">
+        <div ng-click="item.Maintenance.IntervalRarely = !item.Maintenance.IntervalRarely" style="text-align: center;">
+            <i ng-show="item.Maintenance.IntervalRarely" class="fa fa-check"></i><span>&nbsp;</span>
+        </div>
+    </column>
+
+</datagrid>

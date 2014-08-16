@@ -1,0 +1,17 @@
+﻿<div>
+    <div class="toolbar">
+        <span ng-repeat="button in toolbar | orderBy:'order'" ng-mouseenter="showTooltip($event, button);" ng-mouseleave="hideTooltip()">
+            <button class="button" ng-if="button.visible" ng-disabled="button.disabled" ng-click="button.action()">
+                <i class="fa fa-fw {{button.icon}}"></i>
+            </button>
+        </span>
+        <button class="pull-right button" data-toggle="modal" data-target="#column-dialog">
+            <i class="fa fa-fw fa-gear"></i>
+        </button>
+        <span ng-if="isLoading"><i title="Loading content ..." class="fa fa-spinner fa-spin"></i></span>
+    </div>
+    <div ng-if="isTooltipVisible" class="tooltip" ng-style="{ 'left' : tooltipX, 'top' : tooltipY }">
+        <div class="tooltip-header"><b>{{button.tooltip.title}}</b><i class="pull-right fa fa-fw {{button.icon}}"></i></div>
+        <div class="tooltip-body">{{button.tooltip.body}}</div>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+﻿<datagrid>
+
+    <column width="10" order="0" name="Project" property="Project.ProjectNumber" type="string">
+        <span class="icn-indent project">
+            <a ng-href="/project/{{item.ProjectId}}">{{item.Project.ProjectNumber}}</a>
+        </span> 
+    </column>
+
+    <column width="30" order="1" name="Name" property="Project.Name" type="string">
+        {{item.Project.Name}}
+    </column>
+
+    <column width="30" order="2" name="Customer" property="Project.Customer.Name" type="string">
+        <span class="icn-indent customer">
+            <a ng-href="/customer/{{item.Project.CustomerId}}">{{item.Project.Customer.Name}}</a>
+	</span>
+    </column>
+
+    <column width="25" order="3" name="Info" property="Info" type="string">
+        <span editable-textarea="item.Info">
+            {{item.Info}}
+        </span>
+    </column>
+
+    <column width="5" order="4" name="Count" property="Count" type="number">
+        <span editable-number="item.Count" e-min="0">
+            {{item.Count}}
+        </span>
+    </column>
+
+
+</datagrid>

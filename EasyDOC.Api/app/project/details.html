@@ -1,0 +1,255 @@
+﻿<!-- BEGIN FORM-->
+<form class="form-horizontal">
+    <div class="form-body">
+        <h2 class="margin-bottom-20"> Prosjektinformasjon </h2>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label col-md-3">Prosjektnummer</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" placeholder="Angi et prosjektnummer" ng-model="item.ProjectNumber">
+                    </div>
+                </div>
+            </div>
+            <!--/span-->
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label col-md-3">Beskrivelse</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" placeholder="Angi en prosjektbeskrivelse" ng-model="item.Name">
+                    </div>
+                </div>
+            </div>
+            <!--/span-->
+        </div>
+        <!--/row-->
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label col-md-3">Kunde</label>
+                    <div class="col-md-9">
+                        <div class="input-icon right">
+                            <i ng-if="!loadingCustomers && customer.length" ng-click="item.Customer = null;" class="fa fa-fw fa-times-circle" style="cursor: pointer;"></i>
+                            <i ng-if="loadingCustomers" class="fa fa-fw fa-refresh fa-spin"></i>
+                            <input type="text" class="form-control" placeholder="Velg en kunde" ng-model="customer" typeahead="customer.Name for customer in getAsync('Customers', $viewValue)" typeahead-on-select="item.Customer = $item" typeahead-wait-ms="250">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/span-->
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label col-md-3">Startdato</label>
+                    <div class="col-md-9">
+                        <input type="text" placeholder="Angi en startdato for prosjektet" class="form-control date-picker" ng-model="startDate" />
+                    </div>
+                </div>
+            </div>
+            <!--/span-->
+        </div>
+        <!--/row-->
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label col-md-3">Prosjektleder</label>
+                    <div class="col-md-9">
+                        <div class="input-icon right">
+                            <i ng-if="!loadingEmployees && projectManager.length" ng-click="item.ProjectManager = null;" class="fa fa-fw fa-times-circle" style="cursor: pointer;"></i>
+                            <i ng-if="loadingEmployees" class="fa fa-fw fa-refresh fa-spin"></i>
+                            <input type="text" ng-model="projectManager" placeholder="Velg en prosjektleder" typeahead="employee.Name for employee in getAsync('Employees', $viewValue)" typeahead-on-select="item.ProjectManager = $item" class="form-control" typeahead-wait-ms="250">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/span-->
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label col-md-3">Prosjektstatus</label>
+                    <div class="col-md-9">
+                        <button class="btn btn-default" ng-class=" { 'btn-primary' : item.Status == 'Planned' }" ng-click="item.Status = 'Planned'">Planlagt</button>
+                        <button class="btn btn-default" ng-class=" { 'btn-primary' : item.Status == 'Active' }" ng-click="item.Status = 'Active'">Aktivt</button>
+                        <button class="btn btn-default" ng-class=" { 'btn-primary' : item.Status == 'Completed' }" ng-click="item.Status = 'Completed'">Avsluttet</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/row-->
+    </div>
+    <div ng-if="hasChanges()" class="form-actions pull-right">
+        <button ng-click="saveChanges()" type="button" class="btn btn-primary">
+            Lagre
+        </button>
+        <button ng-click="cancelChanges()" type="button" class="btn btn-danger">
+            Avbryt
+        </button>
+    </div>
+</form>
+
+
+<div class="clearfix margin-bottom-20">
+</div>
+
+<div class="row">
+    <div ng-if="item.Status == 'Completed'">
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <div class="dashboard-stat blue-madison">
+                <div class="visual">
+                    <i class="fa fa-ambulance"></i>
+                </div>
+                <div class="details">
+                    <div class="number">
+                        {{item.Services.length || 0}}
+                    </div>
+                    <div class="desc">
+                        Serviceoppdrag
+                    </div>
+                </div>
+                <a class="more" href="#">
+                    Opprett nytt oppdrag<i class="m-icon-swapright m-icon-white"></i>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <div class="dashboard-stat green-haze">
+                <div class="visual">
+                    <i class="fa fa-file-text"></i>
+                </div>
+                <div class="details">
+                    <div class="number">
+                        {{item.ServiceReports.length || 0}}
+                    </div>
+                    <div class="desc">
+                        Servicerapporter
+                    </div>
+                </div>
+                <a class="more" href="#">
+                    Skriv ny rapport<i class="m-icon-swapright m-icon-white"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div ng-if="item.Status != 'Planned'" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+        <div class="dashboard-stat blue-steel">
+            <div class="visual">
+                <i class="fa fa-money"></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    {{item.OrderConfirmations.length || 0}}
+                </div>
+                <a class="desc" class="more" href="/projects/{{item.ProjectNumber}}/orderConfirmation">
+                    Ordrebekreftelser
+                </a>
+            </div>
+            <a class="more" href="/projects/{{item.ProjectNumber}}/registerOrderConfirmation">
+                Registrer ny ordrebekreftelse<i class="m-icon-swapright m-icon-white"></i>
+            </a>
+        </div>
+    </div>
+    <div ng-if="item.Status != 'Planned' && item.Documentation.length == 0" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+        <div class="dashboard-stat green-haze">
+            <div class="visual">
+                <i class="fa fa-file-text"></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    {{item.Documentations.length || 0}}
+                </div>
+                <div class="desc">
+                    Dokumentasjon
+                </div>
+            </div>
+            <a class="more" href="#">
+                Opprett dokumentasjon<i class="m-icon-swapright m-icon-white"></i>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="tiles">
+    <div ng-if="item.Documentations.length" class="tile double bg-blue-steel">
+        <div class="tile-body">
+            <i class="fa fa-fw fa-file"></i>
+        </div>
+        <div class="tile-object">
+            <div class="name">
+                Dokumentasjon
+            </div>
+            <div class="number">
+                {{item.Documentations.length}}
+            </div>
+        </div>
+    </div>
+    <div class="tile bg-green-haze">
+        <div class="tile-body">
+            <i class="fa fa-fw fa-heart"></i>
+        </div>
+        <div class="tile-object">
+            <div class="name">
+                Vedlikehold
+            </div>
+            <div class="number">
+                {{item.Maintenances.length}}
+            </div>
+        </div>
+    </div>
+    <div class="tile bg-blue-madison">
+        <div class="tile-body">
+            <i class="fa fa-fw fa-warning"></i>
+        </div>
+        <div class="tile-object">
+            <div class="name">
+                Sikkerhet
+            </div>
+            <div class="number">
+                {{item.Safeties.length}}
+            </div>
+        </div>
+    </div>
+    <div class="tile bg-green-jungle">
+        <div class="tile-body">
+            <i class="fa fa-fw fa-cogs"></i>
+        </div>
+        <div class="tile-object">
+            <div class="name">
+                Komponenter
+            </div>
+            <div class="number">
+                {{item.Components.length}}
+            </div>
+        </div>
+    </div>
+    <div class="tile bg-blue-steel">
+        <div class="tile-body">
+            <i class="fa fa-fw fa-smile-o"></i>
+        </div>
+        <div class="tile-object">
+            <div class="name">
+                Erfaringer
+            </div>
+            <div class="number">
+                {{item.Experiences.length}}
+            </div>
+        </div>
+    </div>
+    <div class="tile bg-green-haze">
+        <div class="tile-body">
+            <i class="fa fa-fw fa-folder-open-o"></i>
+        </div>
+        <div class="tile-object">
+            <div class="name">
+                Filer
+            </div>
+            <div class="number">
+                {{item.Files.length}}
+            </div>
+        </div>
+    </div>
+</div>
+
+<p>&nbsp;</p>
+<span ng-include="'/app/partials/history.html'"></span>
+<p>&nbsp;</p>
+
