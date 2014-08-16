@@ -28,7 +28,6 @@ _ReSharper*/
 *.vssscc
 $tf*/
 phantomjs-1.9.7-windows/
-oldApp/
 EasyDOC.Api/root
 EasyDOC.Api/Content
 EasyDOC.Api/Scripts
