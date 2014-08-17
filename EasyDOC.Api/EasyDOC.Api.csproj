@@ -263,6 +263,8 @@
     <Content Include="app\base\Notifications.js" />
     <Content Include="app\command\CommandService.js" />
     <Content Include="app\datagrid\datagrid-old.html" />
+    <Content Include="app\documentation\details.html" />
+    <Content Include="app\documentation\DocumentationController.js" />
     <Content Include="app\ganttchart\gantt-calendar.js" />
     <Content Include="app\ganttchart\gantt-cpm.js" />
     <Content Include="app\ganttchart\gantt-dependency.js" />
@@ -2765,7 +2767,7 @@
     <Content Include="assets\global\plugins\zoom\jquery.zoom.min.js" />
     <Content Include="assets\global\scripts\datatable.js" />
     <Content Include="assets\global\scripts\metronic.js" />
-    <Content Include="changes-to-css.js" />
+    <Content Include="Content\angular-ui-tree.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -2947,6 +2949,7 @@
     <Content Include="old_app\partials\details.html" />
     <Content Include="Scripts\angular-ui-router.js" />
     <Content Include="Scripts\angular-ui-router.min.js" />
+    <Content Include="Scripts\angular-ui\angular-ui-tree.min.js" />
     <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.js" />
     <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.min.js" />
     <Content Include="Scripts\angular-ui\ui-bootstrap.js" />
@@ -2976,7 +2979,6 @@
     <Content Include="Scripts\angular\angular-translate.min.js" />
     <Content Include="Scripts\angular\angular.js" />
     <Content Include="Scripts\angular\angular.min.js" />
-    <Content Include="Scripts\angular\bindonce.js" />
     <Content Include="Scripts\angular\i18n\angular-locale_af-na.js" />
     <Content Include="Scripts\angular\i18n\angular-locale_af-za.js" />
     <Content Include="Scripts\angular\i18n\angular-locale_af.js" />
@@ -3237,7 +3239,6 @@
     <Content Include="PdfConverterRules\Intralox-MDD.tbl" />
     <Content Include="PdfConverterRules\MurrElektronik-MDD.tbl" />
     <Content Include="old_app\partials\search.html" />
-    <Content Include="Scripts\angular\bindonce.min.js" />
     <Content Include="PdfConverterRules\Sick\Sick-1-MDD.tbl" />
     <Content Include="PdfConverterRules\Sick\Sick-2-MDD.tbl" />
     <Content Include="PdfConverterRules\Sick\Sick-3-MDD.tbl" />

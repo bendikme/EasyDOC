@@ -15,7 +15,8 @@
         'sly',
 	    'ui.router',
 	    'ui.router.router',
-	    'ui.bootstrap'
+	    'ui.bootstrap',
+	    'ui.tree'
 	]);
 
 	app.config(function ($locationProvider, $urlRouterProvider) {

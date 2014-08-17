@@ -10,8 +10,6 @@
 
     var manager = new breeze.EntityManager('/breeze/easydoc/');
 
-    man = manager;
-
     var fetchMetadataPromise = manager.metadataStore.fetchMetadata('/breeze/easydoc/', function () {
         manager.metadataStore.setEntityTypeForResourceName('ComponentSeries', 'ComponentSeries');
         manager.metadataStore.setEntityTypeForResourceName('AllChapters', 'AbstractChapter');

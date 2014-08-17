@@ -123,6 +123,17 @@
 			title: 'List'
 		});
 
+		$stateProvider.state('documentationDetails', {
+			url: '/documentation/{id:[0-9]+}',
+			views: {
+				'main': {
+					templateUrl: '/app/documentation/details.html',
+					controller: 'DocumentationController'
+				}
+			},
+			title: 'Documentation'
+		});
+
 		$stateProvider.state('details', {
 			url: '/{maintype:[a-z]+}/{id:[0-9]+}',
 			views: {

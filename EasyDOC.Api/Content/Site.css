@@ -467,10 +467,12 @@ ul.nav-tabs li a {
     background-image: url(icons/page_white_stack.png);
 }
 
+.Chapter,
 .chapter {
     background-image: url(icons/page_white.png);
 }
 
+.GeneratedChapter,
 .generatedchapter {
     background-image: url(icons/page_white_gear.png);
 }

@@ -1,0 +1,61 @@
+﻿<script type="text/ng-template" id="subchapters.html">
+    <div class="tree-item" ng-mouseover="relation.showToolbar = true" ng-mouseout="relation.showToolbar = false">
+        <span ng-click="toggleSubchapters(relation)">
+            <small ng-if="relation.subchapters.length" class="fa fa-fw" ng-class="{'fa-angle-right': relation.collapsed, 'fa-angle-down': !relation.collapsed}"></small>
+            <small ng-if="!relation.subchapters.length" class="fa fa-fw"></small>
+        </span>
+        <span class="icn-indent {{relation.Chapter.entityType.shortName}}"></span>
+        &nbsp;{{relation.ChapterNumber}} - {{relation.Title ? relation.Title : relation.Chapter.Name}}
+        <span class=pull-right ng-show="relation.showToolbar">
+            <a class="btn btn-xs green" ng-click="relation.collapsed = false; relation.showAddChapter = true;"><i class="fa fa-fw fa-plus"></i></a>
+            <a class="btn btn-xs red"><i class="fa fa-fw fa-trash-o"></i></a>
+            <a ui-tree-handle class="btn btn-xs gray"><i class="fa fa-fw fa-arrows"></i></a>
+        </span>
+    </div>
+    <div ng-show="!relation.collapsed">
+        <input ng-if="relation.showAddChapter" type="text" class="form-control" placeholder="Velg et kapittel" ng-model="chapter" typeahead="chapter.Name for chapter in getAsync('AllChapters', 'Project', $viewValue)" typeahead-on-select="addChapter(relation, $item)" typeahead-wait-ms="250" typeahead-template-url="chapterPreview.html">
+        <ol ui-tree-nodes="" ng-model="relation.subchapters">
+            <li ng-repeat="relation in relation.subchapters" ui-tree-node ng-include="'subchapters.html'">
+            </li>
+        </ol>
+    </div>
+</script>
+
+<script type="text/ng-template" id="chapterPreview.html">
+    <a tabindex="-1">
+        <div>
+            <span class="icn-indent {{match.model.entityType.shortName}}"></span>
+            <span bind-html-unsafe="match.model.Name | typeaheadHighlight:query"></span>
+        </div>
+        <div ng-if="match.model.Project">
+            <span class="icn-indent project"></span>
+            <small>{{match.model.Project.ProjectNumber}}</small>
+        </div>
+    </a>
+</script>
+
+<!-- BEGIN FORM-->
+<h2 class="margin-bottom-20"> {{item.Name}} <small>({{item.Project.ProjectNumber}})</small></h2>
+<div class="row">
+    <div class="col-md-3">
+        <h4 class="margin-bottom-20"> Innholdsfortegnelse</h4>
+        <div ui-tree="treeOptions">
+            <ol ui-tree-nodes="" ng-model="item.subchapters" id="tree-root">
+                <li ng-repeat="relation in item.subchapters" ui-tree-node ng-include="'subchapters.html'"></li>
+            </ol>
+        </div>
+    </div>
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-3 col-sm-offset-3">
+        <span ng-include="'/app/partials/history.html'"></span>
+        <div ng-if="hasChanges()" class="form-actions pull-right">
+            <button ng-click="saveChanges()" type="button" class="btn btn-primary">
+                Lagre
+            </button>
+            <button ng-click="cancelChanges()" type="button" class="btn btn-danger">
+                Avbryt
+            </button>
+        </div>
+    </div>
+</div>
